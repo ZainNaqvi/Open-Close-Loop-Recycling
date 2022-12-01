@@ -19,14 +19,15 @@ class GenericButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: width,
-        margin: EdgeInsets.only(top: margin),
-        child: Column(
-          children: [
-            Container(
+    return Container(
+      width: width,
+      margin: EdgeInsets.only(top: margin),
+      child: Column(
+        children: [
+          InkWell(
+            borderRadius: BorderRadius.circular(24.r),
+            onTap: onTap,
+            child: Container(
               width: double.maxFinite,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24.r),
@@ -48,9 +49,9 @@ class GenericButton extends StatelessWidget {
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
