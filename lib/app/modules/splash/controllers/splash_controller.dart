@@ -1,23 +1,15 @@
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/routes.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    gotoPage();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  gotoPage() async {
+    await Future.delayed(const Duration(seconds: 3));
+    Get.offAllNamed(AppRoutes.ON_BOARDINGVIEW_ROUTE);
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

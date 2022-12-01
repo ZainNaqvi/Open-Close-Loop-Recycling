@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/routes.dart';
 import 'package:open_close_loop_recycling/app/themes/themes_model.dart';
 
+import 'themes/themes.dart';
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -44,6 +46,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             builder: (controller) {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
                 themeMode: ThemeMode.light,
                 title: "Application",
                 initialRoute: AppRoutes.INITIAL_ROUTE,

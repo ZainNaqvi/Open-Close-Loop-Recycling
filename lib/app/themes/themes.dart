@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_close_loop_recycling/app/utils/colors.dart';
 
 class AppTheme {
   AppTheme._();
@@ -6,7 +7,7 @@ class AppTheme {
   // Light - Theme
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: Colors.grey[200],
+    scaffoldBackgroundColor: AppColors.PRIMARY_COLOR,
     brightness: Brightness.light,
     buttonTheme: const ButtonThemeData(
       buttonColor: Colors.white,
