@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:open_close_loop_recycling/app/modules/login/views/login.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_button.dart';
 import '../../../widgets/generic_text_field.dart';
-import '../controllers/signup_controller.dart';
+import '../controllers/controller.dart';
 import 'widgets/login_to_your_account.dart';
 
-class SignupView extends GetView<SignupController> {
-  const SignupView({Key? key}) : super(key: key);
+class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +18,7 @@ class SignupView extends GetView<SignupController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Login - to - your - account - container
-            HeadingText(title: "Sign up", subTitle: "Create an account"),
+            const LoginToYourAccount(),
             // Text - form - fields
             Form(
               child: Column(
@@ -28,21 +27,25 @@ class SignupView extends GetView<SignupController> {
                   SizedBox(height: 10.h),
                   GenericTextField(),
                   SizedBox(height: 10.h),
-                  GenericTextField(),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Forgot Password",
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 10.h),
-                  GenericButton(onTap: () {}, text: "Sign up"),
+                  GenericButton(onTap: () {}, text: "Login"),
                   SizedBox(height: 10.h),
                   Row(
                     children: [
                       Text(
-                        "Already have a account?  ",
+                        "Don’t have an account?  ",
                         style: TextStyle(),
                       ),
-                      GestureDetector(
-                          onTap: () {
-                            Get.to(LoginView());
-                          },
-                          child: Text("Login Now")),
+                      Text("Sign Up Now"),
                     ],
                   ),
                 ],

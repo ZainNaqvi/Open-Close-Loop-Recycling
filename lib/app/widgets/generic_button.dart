@@ -12,7 +12,7 @@ class GenericButton extends StatelessWidget {
     Key? key,
     this.isBackground = null,
     required this.onTap,
-    this.margin = 118,
+    this.margin = 0,
     this.width = double.maxFinite,
     required this.text,
   }) : super(key: key);

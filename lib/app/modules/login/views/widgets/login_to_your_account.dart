@@ -4,14 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/file_path.dart';
 
-class HeadingText extends StatelessWidget {
-  const HeadingText({
+class LoginToYourAccount extends StatelessWidget {
+  const LoginToYourAccount({
     Key? key,
-    required this.subTitle,
-    required this.title,
   }) : super(key: key);
-  final String title;
-  final String subTitle;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +33,7 @@ class HeadingText extends StatelessWidget {
           ),
           SizedBox(height: 28.0.h),
           Text(
-            title,
+            "Welcome to",
             style: TextStyle(
               color: AppColors.WHITE_COLOR,
               fontWeight: FontWeight.w400,
@@ -45,7 +42,7 @@ class HeadingText extends StatelessWidget {
           ),
           SizedBox(height: 11.0.h),
           Text(
-            subTitle,
+            "Login to your account",
             style: TextStyle(
               color: AppColors.WHITE_COLOR,
               fontWeight: FontWeight.w500,
