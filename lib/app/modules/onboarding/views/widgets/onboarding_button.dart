@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:open_close_loop_recycling/app/routes.dart';
-
+import '../../../../routes/routes.dart';
 import '../../../../widgets/generic_button.dart';
 
 class OnboardingButtons extends StatelessWidget {
