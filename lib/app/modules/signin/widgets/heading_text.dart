@@ -1,56 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/file_path.dart';
+import '../../../utils/colors.dart';
+import '../../../utils/file_path.dart';
 
-class WelcomeBox extends StatelessWidget {
-  const WelcomeBox({
+class HeadingText extends StatelessWidget {
+  const HeadingText({
     Key? key,
+    required this.subTitle,
+    required this.title,
   }) : super(key: key);
-
+  final String title;
+  final String subTitle;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 104.h),
       width: double.maxFinite,
-      height: 354.h,
       decoration: BoxDecoration(
         color: AppColors.PRIMARY_COLOR,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(24.r),
-          bottomRight: Radius.circular(24.r),
+          bottomLeft: Radius.circular(8.r),
+          bottomRight: Radius.circular(8.r),
         ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 22.h),
-          // Waste - App - Logo
-          SizedBox(
-            width: 104.w,
+          Container(
+            padding: EdgeInsets.all(24.r),
+            height: 137.h,
+            width: 170.w,
+            decoration: BoxDecoration(
+                color: AppColors.PRIMARY_BACK_COLOR,
+                borderRadius: BorderRadius.circular(24.r)),
             child: Image.asset(FilePath.WASTE_IMAGE),
           ),
-          SizedBox(height: 28.0.h),
-          // Welcome - Text
+          SizedBox(height: 24.0.h),
           Text(
-            "Welcome to",
-            style: TextStyle(
-              color: AppColors.WHITE_COLOR,
-              fontWeight: FontWeight.w400,
-              fontSize: 18.sp,
-            ),
-          ),
-          SizedBox(height: 11.0.h),
-          // Sub - Heading - Waste - Management
-          Text(
-            "Open Close Loop Recycling",
+            title,
             style: TextStyle(
               color: AppColors.WHITE_COLOR,
               fontWeight: FontWeight.w500,
               fontSize: 20.sp,
             ),
           ),
+          SizedBox(height: 11.0.h),
+          Text(
+            subTitle,
+            style: TextStyle(
+              color: AppColors.WHITE_COLOR,
+              fontWeight: FontWeight.w500,
+              fontSize: 12.sp,
+            ),
+          ),
+          SizedBox(height: 31.0.h),
         ],
       ),
     );

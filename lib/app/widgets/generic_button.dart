@@ -12,7 +12,7 @@ class GenericButton extends StatelessWidget {
     Key? key,
     this.isBackground = null,
     required this.onTap,
-    this.margin = 118,
+    this.margin = 0,
     this.width = double.maxFinite,
     required this.text,
   }) : super(key: key);
@@ -37,10 +37,11 @@ class GenericButton extends StatelessWidget {
                   border: Border.all(color: AppColors.PRIMARY_COLOR)),
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.all(12.0.r),
+                  padding: EdgeInsets.all(14.0.r),
                   child: Text(
-                    text,
+                    text.toUpperCase(),
                     style: TextStyle(
+                      fontSize: 16.sp,
                       color: isBackground != null
                           ? AppColors.PRIMARY_COLOR
                           : AppColors.WHITE_COLOR,
