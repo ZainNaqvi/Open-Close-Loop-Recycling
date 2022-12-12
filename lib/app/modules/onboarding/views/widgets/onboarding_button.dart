@@ -26,7 +26,9 @@ class OnboardingButtons extends StatelessWidget {
           width: 294.w,
           isBackground: false,
           text: "Login",
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(AppRoutes.SIGN_IN_ROUTE);
+          },
         ),
       ],
     );

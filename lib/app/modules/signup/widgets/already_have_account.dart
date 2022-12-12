@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/routes/routes.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
-
-import '../../signin/singin.dart';
 
 Row Already_Have_Account() {
   return Row(
@@ -14,7 +13,7 @@ Row Already_Have_Account() {
       ),
       GestureDetector(
         onTap: () {
-          Get.to(const SigninView());
+          Get.toNamed(AppRoutes.SIGN_IN_ROUTE);
         },
         child: Text(
           "Login Now",

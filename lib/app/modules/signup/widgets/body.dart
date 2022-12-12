@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 62.h),
+            SizedBox(height: 58.h),
             // Login - to - your - account - container
             HeadingText(title: "Sign up", subTitle: "Create an account"),
             // Signup - Form - Widget

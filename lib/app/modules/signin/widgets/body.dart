@@ -16,12 +16,12 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 94.h),
+            SizedBox(height: 58.h),
             // Signin - to - your - account - container
             const HeadingText(
                 subTitle: 'Login to your account', title: 'Welcome Back!'),
             // Signin - Form - Widget
-            SizedBox(height: 24.h),
+            SizedBox(height: 42.h),
             const SigninFormWidget(),
           ],
         ),

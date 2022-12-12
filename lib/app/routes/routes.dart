@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/modules/signin/singin.dart';
 import '../modules/fogot/forgot.dart';
 import '../modules/home/home_view.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const HOME_ROUTE = '/home';
   static const SIGNUP_ROUTE = '/signup';
   static const FORGOT_PASSWORD_ROUTE = '/forgot-password';
+  static const SIGN_IN_ROUTE = '/signin';
   // App - Routes - Navigation
   static final ROUTES = [
     // Splash - View - Widget
@@ -42,6 +44,12 @@ class AppRoutes {
     GetPage(
       name: FORGOT_PASSWORD_ROUTE,
       page: () => const ForgotView(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    // Signin - View - Widget
+    GetPage(
+      name: SIGN_IN_ROUTE,
+      page: () => const SigninView(),
       transition: Transition.leftToRightWithFade,
     ),
   ];

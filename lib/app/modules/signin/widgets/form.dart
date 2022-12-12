@@ -46,7 +46,7 @@ class SigninFormWidget extends StatelessWidget {
               controller: controller.userPasswordController,
               textInputAction: TextInputAction.done,
             ),
-            SizedBox(height: 18.h),
+            SizedBox(height: 2.h),
             Align(
               alignment: Alignment.topRight,
               child: TextButton(
@@ -62,7 +62,7 @@ class SigninFormWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 18.h),
+            SizedBox(height: 44.h),
             GenericButton(
               onTap: () {
                 if (controller.userEmailController.text.isEmpty &&
