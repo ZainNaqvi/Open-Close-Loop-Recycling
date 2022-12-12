@@ -36,7 +36,7 @@ class FirebaseAuthMethods {
   Future<String> createUser({
     required String name,
     required String email,
-    required String password,
+      required String password
   }) async {
     String res = "Some error Occured";
     try {
