@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             // Login - to - your - account - container
             const HeadingText(title: "Sign up", subTitle: "Create an account"),
             // Signup - Form - Widget
-            const SignupForm(),
+            SignupForm(),
           ],
         ),
       ),

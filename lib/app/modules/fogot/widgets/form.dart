@@ -10,7 +10,10 @@ import '../../../widgets/generic_snake_bar.dart';
 import '../../../widgets/generic_text_field.dart';
 
 class ForgotFormWidget extends StatelessWidget {
-  const ForgotFormWidget({
+  // Forgot - Password - Form - State
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  ForgotFormWidget({
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +21,7 @@ class ForgotFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ForgotPasswordController>(builder: (controller) {
       return Form(
-        key: controller.formKey,
+        key: _formKey,
         child: Column(
           children: [
             GenericTextField(
@@ -37,7 +40,7 @@ class ForgotFormWidget extends StatelessWidget {
                   )
                 : GenericButton(
                     onTap: () async {
-                      if (controller.formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         if (controller.userEmailController.text.isEmail) {
                           await controller.forgotPassword();
                         } else {

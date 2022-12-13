@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:open_close_loop_recycling/app/widgets/generic_button.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_snake_bar.dart';
 // ignore: avoid_web_libraries_in_flutter
 // import 'dart:html' as html;
@@ -68,6 +69,8 @@ class DbHelper {
         GenericSnackBar(text: "The password provided is too weak.");
       } else if (err.code == 'email-already-in-use') {
         GenericSnackBar(text: "The account already exists for that email.");
+      } else if (err.code == 'timeout') {
+        GenericSnackBar(text: 'The operation has timed out.');
       }
     }
     return res;
@@ -78,7 +81,7 @@ class DbHelper {
     String res = "Some error occured";
     try {
       _auth.currentUser!.sendEmailVerification();
-      GenericSnackBar(text: "Email Verification is send to your email.");
+      GenericSnackBar(text: "Email Verification code is send to your email.");
 
       res = "success";
     } on FirebaseException catch (e) {
@@ -107,8 +110,15 @@ class DbHelper {
         res = "success";
       }
     } on FirebaseAuthException catch (err) {
-      if (err.code == "wrong-password") {
+      if (err.code == 'user-not-found') {
+        GenericSnackBar(
+            text: "There is no user record corresponding to this identifier");
+      } else if (err.code == "wrong-password") {
         GenericSnackBar(text: "Invalid Creaditials");
+      } else if (err.code == 'timeout') {
+        GenericSnackBar(text: 'The operation has timed out.');
+      } else {
+        GenericSnackBar(text: err.code);
       }
     } catch (err) {
       GenericSnackBar(text: "Some error occured");
@@ -117,13 +127,11 @@ class DbHelper {
   }
 
   // forgot password
-  Future<String> forgotPassword(
-      {required String email}) async {
+  Future<String> forgotPassword({required String email}) async {
     String res = "Some error occred";
     try {
       await _auth.sendPasswordResetEmail(email: email);
       res = 'success';
-  
     } on FirebaseException catch (e) {
       GenericSnackBar(text: "Some error occured");
     }
