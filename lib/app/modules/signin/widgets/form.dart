@@ -12,7 +12,10 @@ import '../../../widgets/generic_text_field.dart';
 import 'dont_have_account.dart';
 
 class SigninFormWidget extends StatelessWidget {
-  const SigninFormWidget({
+  // Signin - Form - State
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  SigninFormWidget({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +23,7 @@ class SigninFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SignInController>(builder: (controller) {
       return Form(
-        key: controller.formKey,
+        key: _formKey,
         child: Column(
           children: [
             GenericTextField(
@@ -72,7 +75,7 @@ class SigninFormWidget extends StatelessWidget {
                   )
                 : GenericButton(
                     onTap: () async {
-                      if (controller.formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate()) {
                   if (controller.userEmailController.text.isEmail) {
                           await controller.loginUser();
                   } else {

@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
             ),
             // Signin - Form - Widget
             SizedBox(height: 24.h),
-            const ForgotFormWidget(),
+            ForgotFormWidget(),
           ],
         ),
       ),

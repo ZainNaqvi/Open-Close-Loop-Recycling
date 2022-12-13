@@ -35,7 +35,7 @@ class SplashController extends GetxController {
     } else {
       GenericSnackBar(text: "No internet connection found");
       GenericSnackBar(text: "Plese try again later...");
-      await SystemNavigator.pop();
+ 
     }
   }
 }

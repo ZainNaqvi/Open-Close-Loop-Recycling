@@ -11,7 +11,9 @@ import '../../../widgets/generic_text_field.dart';
 import 'already_have_account.dart';
 
 class SignupForm extends StatelessWidget {
-  const SignupForm({
+  // Signup - Form - State
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  SignupForm({
     Key? key,
   }) : super(key: key);
 
@@ -19,7 +21,7 @@ class SignupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<SignupController>(builder: (controller) {
       return Form(
-        key: controller.formKey,
+        key: _formKey,
         child: Column(
           children: [
             // User - Name - Field
@@ -85,7 +87,7 @@ class SignupForm extends StatelessWidget {
                   )
                 : GenericButton(
                     onTap: () async {
-                      if (controller.formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate()) {
                         if (controller.userPasswordController.text ==
                             controller.userConfirmPasswordController.text) {
                           await controller.createUser();

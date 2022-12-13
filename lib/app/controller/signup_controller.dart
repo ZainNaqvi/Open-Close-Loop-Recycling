@@ -11,11 +11,6 @@ class SignupController extends GetxController {
     isloading = !isloading;
     update();
   }
-
-  // Signup - Form - State
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // Getter ->
-  GlobalKey<FormState> get formKey => _formKey;
   // Signup - Form - Text - Field - Controller
   // ************************************************
   // User - Name - Field
@@ -76,7 +71,12 @@ class SignupController extends GetxController {
     // Checking - Response ->
     if (response == 'success') {
       GenericSnackBar(text: "Successfully created your account");
+      userNameController.clear();
+      userEmailController.clear();
+      userPasswordController.clear();
+      userConfirmPasswordController.clear();
       Get.toNamed(AppRoutes.SIGN_IN_ROUTE);
+
       updateIsLoading();
     } else {
       updateIsLoading();

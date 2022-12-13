@@ -12,10 +12,7 @@ class SignInController extends GetxController {
     isloading = !isloading;
     update();
   }
-  // Signin - Form - State
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // Getter ->
-  GlobalKey<FormState> get formKey => _formKey;
+
   // Signin - Form - Text - Field - Controller
   // ************************************************
   // User - Email - Field
@@ -24,7 +21,7 @@ class SignInController extends GetxController {
   final TextEditingController userPasswordController = TextEditingController();
 // *************************************************
   // User - Password - Obscure
-  bool _passwordIsObscure = false;
+  bool _passwordIsObscure = true;
   // User - Password - Getter
   bool get passwordIsObscure => _passwordIsObscure;
 
@@ -63,8 +60,13 @@ class SignInController extends GetxController {
       GenericSnackBar(
           text:
               "Successfully loggedIn,\nWelcome to Waste - Management - App once's again!");
+             
+      userEmailController.clear();
+      userPasswordController.clear();
+    
       Get.offAllNamed(AppRoutes.HOME_ROUTE);
       updateIsLoading();
+      
     } else {
       updateIsLoading();
     }
