@@ -63,16 +63,23 @@ class SigninFormWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: 44.h),
-            GenericButton(
-              onTap: () {
-                if (controller.userEmailController.text.isEmpty &&
-                    controller.userPasswordController.text.isEmpty) {
-                  GenericSnackBar(text: "All fields required");
-                } else {
+            controller.isloading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.WHITE_COLOR,
+                      semanticsLabel: 'processing...',
+                    ),
+                  )
+                : GenericButton(
+                    onTap: () async {
+                      if (controller.formKey.currentState!.validate()) {
                   if (controller.userEmailController.text.isEmail) {
+                          await controller.loginUser();
                   } else {
                     GenericSnackBar(text: "Email is not valid");
                   }
+                      } else {
+                        GenericSnackBar(text: "All fields required");
                 }
               },
               text: "Sign in",

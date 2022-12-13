@@ -1,7 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../routes/routes.dart';
+import '../services/auth/firebase_auth.dart';
+import '../widgets/generic_snake_bar.dart';
+
 class SignInController extends GetxController {
+  // Onloading -
+  bool isloading = false;
+  void updateIsLoading() {
+    isloading = !isloading;
+    update();
+  }
   // Signin - Form - State
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // Getter ->
@@ -29,5 +39,34 @@ class SignInController extends GetxController {
   void updatePasswordIsObscure() {
     _passwordIsObscure = !_passwordIsObscure;
     update();
+  }
+  // **********************************************
+  // ********** Firebase - Crud - Operations *******************
+  //***********************************************
+
+  // Creating - The - Object - DbHelper
+
+  DbHelper _dbHelper = DbHelper();
+
+  // Creating - New - User - Here
+
+  Future<void> loginUser() async {
+    updateIsLoading();
+    print(userEmailController.text);
+    print(userPasswordController.text);
+    String response = await _dbHelper.userLogin(
+      email: userEmailController.text.trim(),
+      password: userPasswordController.text.trim(),
+    );
+    // Checking - Response ->
+    if (response == 'success') {
+      GenericSnackBar(
+          text:
+              "Successfully loggedIn,\nWelcome to Waste - Management - App once's again!");
+      Get.offAllNamed(AppRoutes.HOME_ROUTE);
+      updateIsLoading();
+    } else {
+      updateIsLoading();
+    }
   }
 }
