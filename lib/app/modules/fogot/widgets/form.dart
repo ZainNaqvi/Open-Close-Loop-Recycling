@@ -28,18 +28,28 @@ class ForgotFormWidget extends StatelessWidget {
               textInputAction: TextInputAction.done,
             ),
             SizedBox(height: 34.h),
-            GenericButton(
-              onTap: () {
-                if (controller.formKey.currentState!.validate()) {
-                  if (controller.userEmailController.text.isEmail) {
-                  } else {
-                    GenericSnackBar(text: "Email is not valid");
-                  }
-                }
-              },
-              text: "Reset Password",
-              isBackground: true,
-            ),
+            controller.isloading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.WHITE_COLOR,
+                      semanticsLabel: 'processing...',
+                    ),
+                  )
+                : GenericButton(
+                    onTap: () async {
+                      if (controller.formKey.currentState!.validate()) {
+                        if (controller.userEmailController.text.isEmail) {
+                          await controller.forgotPassword();
+                        } else {
+                          GenericSnackBar(text: "Email is not valid");
+                        }
+                      } else {
+                        GenericSnackBar(text: "Email is required");
+                      }
+                    },
+                    text: "Reset Password",
+                    isBackground: true,
+                  ),
             SizedBox(height: 24.h),
             TextButton(
               onPressed: () {

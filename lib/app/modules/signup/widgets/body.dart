@@ -18,9 +18,9 @@ class Body extends StatelessWidget {
           children: [
             SizedBox(height: 58.h),
             // Login - to - your - account - container
-            HeadingText(title: "Sign up", subTitle: "Create an account"),
+            const HeadingText(title: "Sign up", subTitle: "Create an account"),
             // Signup - Form - Widget
-            SignupForm(),
+            const SignupForm(),
           ],
         ),
       ),

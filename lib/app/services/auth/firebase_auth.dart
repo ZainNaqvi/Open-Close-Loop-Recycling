@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_snake_bar.dart';
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+// import 'dart:html' as html;
 import '../../model/user_model.dart';
 
-class FirebaseAuthMethods {
+class DbHelper {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
@@ -32,27 +32,30 @@ class FirebaseAuthMethods {
   }
   // Creating the function which is responsible for the auth related work
 
-  // creating the function to create the user
-  Future<String> createUser({
-    required String name,
-    required String email,
-      required String password
-  }) async {
+  // creating - the -  function - to - create - the - user
+  Future<String> createUser(
+      {required String name,
+      required String email,
+      required String password}) async {
     String res = "Some error Occured";
     try {
-      UserCreditials userData = UserCreditials(
-        email: _auth.currentUser!.email!,
-        uid: _auth.currentUser!.uid,
-        name: name,
-      );
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-        email: userData.email,
+        email: email,
         password: password,
       );
+
+      // Getting - Response - Firebase - Auth
+
       print(userCredential.user!.uid);
-      // email verification
+      UserCreditials userData = UserCreditials(
+        email: email,
+        uid: userCredential.user!.uid,
+        name: name,
+      );
+      // Sending - Email -  Verification
       await sendVerification();
+      // Creating - Firebase - Firestore - Collection (' user ') & Setting - Values
       await _firebaseFirestore
           .collection("user")
           .doc(userCredential.user!.uid)
@@ -88,7 +91,6 @@ class FirebaseAuthMethods {
   Future<String> userLogin({
     required String email,
     required String password,
-    required BuildContext context,
   }) async {
     String res = "Some error occured.";
     // checking the values are empty or not
@@ -98,9 +100,9 @@ class FirebaseAuthMethods {
           email: email, password: password);
       if (!_auth.currentUser!.emailVerified) {
         await _auth.currentUser!.sendEmailVerification();
-        const url = "https://mail.google.com/";
-        html.window.open(url, "Gmail.com");
-        GenericSnackBar(text: "Verify the email first.");
+        // const url = "https://mail.google.com/";
+        // html.window.open(url, "Gmail.com");
+        GenericSnackBar(text: "Please verify the email first.");
       } else {
         res = "success";
       }
@@ -116,11 +118,12 @@ class FirebaseAuthMethods {
 
   // forgot password
   Future<String> forgotPassword(
-      {required BuildContext context, required String email}) async {
+      {required String email}) async {
     String res = "Some error occred";
     try {
       await _auth.sendPasswordResetEmail(email: email);
       res = 'success';
+  
     } on FirebaseException catch (e) {
       GenericSnackBar(text: "Some error occured");
     }
@@ -132,7 +135,7 @@ class FirebaseAuthMethods {
     String res = "Some error Occured";
     try {
       await _auth.signOut();
-      res = "Logout Done.";
+      res = "success";
     } catch (e) {
       res = e.toString();
     }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "380102314268",
+    "project_id": "waste---management",
+    "storage_bucket": "waste---management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380102314268:android:3a8fd6a3639ffa027492d9",
+        "android_client_info": {
+          "package_name": "com.open_close_loop_recycling.open_close_loop_recycling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380102314268-o0ldedaca9eustbsk8g7id5jtunan989.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNJBjqxUhRONlTSXTTP3zifLL9Iw8LQd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380102314268-o0ldedaca9eustbsk8g7id5jtunan989.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "380102314268-8i04rk43ugn3kii36sldic5u9je8at9p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.opencloselooprecycling.openCloseLoopRecycling"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

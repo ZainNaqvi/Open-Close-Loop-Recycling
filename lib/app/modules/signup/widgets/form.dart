@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/controller/signup_controller.dart';
+import 'package:open_close_loop_recycling/app/utils/colors.dart';
 import 'package:open_close_loop_recycling/app/utils/file_path.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_snake_bar.dart';
 
@@ -75,24 +76,29 @@ class SignupForm extends StatelessWidget {
             SizedBox(height: 24.h),
 
             // Signup - Form - Generic - Button
-            GenericButton(
-              onTap: () {
-                if (controller.userNameController.text.isEmpty &&
-                    controller.userEmailController.text.isEmpty &&
-                    controller.userPasswordController.text.isEmpty &&
-                    controller.userConfirmPasswordController.text.isEmpty) {
-                  GenericSnackBar(text: "All fields required");
-                } else {
-                  if (controller.userPasswordController.text ==
-                      controller.userConfirmPasswordController.text) {
-                  } else {
-                    GenericSnackBar(text: "Password does not matched");
-                  }
-                }
-              },
-              text: "Sign up",
-              isBackground: true,
-            ),
+            controller.isloading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.WHITE_COLOR,
+                      semanticsLabel: "Proccessing...",
+                    ),
+                  )
+                : GenericButton(
+                    onTap: () async {
+                      if (controller.formKey.currentState!.validate()) {
+                        if (controller.userPasswordController.text ==
+                            controller.userConfirmPasswordController.text) {
+                          await controller.createUser();
+                        } else {
+                          GenericSnackBar(text: "Password does not matched");
+                        }
+                      } else {
+                        GenericSnackBar(text: "All fields required");
+                      }
+                    },
+                    text: "Sign up",
+                    isBackground: true,
+                  ),
             SizedBox(height: 14.h),
             // Already - Have - Account
             Already_Have_Account(),
