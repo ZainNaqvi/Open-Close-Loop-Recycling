@@ -4,7 +4,7 @@ import '../routes/routes.dart';
 import '../services/auth/firebase_auth.dart';
 import '../widgets/generic_snake_bar.dart';
 
-class HomeController extends GetxController {
+class RequestController extends GetxController {
   // Onloading -
   bool isloading = false;
   void updateIsLoading() {
@@ -32,19 +32,5 @@ class HomeController extends GetxController {
     } else {
       updateIsLoading();
     }
-  }
-
-  // Selected - tab - inde
-  int selectedTabIndex = 0;
-  updateSelectedIndex(int index) {
-    selectedTabIndex = index;
-    update();
-  }
-
-  // Selected - Bottom - tab - inde
-  int selectedBottomTabIndex = 0;
-  updateSelectedBottomIndex(int index) {
-    selectedBottomTabIndex = index;
-    update();
   }
 }

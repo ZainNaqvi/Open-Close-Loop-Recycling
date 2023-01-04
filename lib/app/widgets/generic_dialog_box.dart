@@ -29,7 +29,7 @@ GenericDialogBox({
     ), //this right here
     child: AnimatedContainer(
       duration: Duration(milliseconds: 600),
-      height: 134.0.h,
+      height: 154.0.h,
       width: Get.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,9 +51,13 @@ GenericDialogBox({
               top: 4.0.h,
             ),
             child: SizedBox(
-              height: 38.h,
+              height: 54.h,
               width: 114.w,
-              child: GenericButton(onTap: pressed, text: buttonName),
+              child: GenericButton(
+                width: 114.w,
+                onTap: pressed,
+                text: buttonName,
+              ),
             ),
           )
         ],

@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/modules/guidelines/guidelines.dart';
+import 'package:open_close_loop_recycling/app/modules/notification/notification.dart';
+import 'package:open_close_loop_recycling/app/modules/request/request.dart';
 import 'package:open_close_loop_recycling/app/modules/signin/singin.dart';
 import '../modules/fogot/forgot.dart';
 import '../modules/home/home_view.dart';
@@ -14,6 +17,9 @@ class AppRoutes {
   static const SIGNUP_ROUTE = '/signup';
   static const FORGOT_PASSWORD_ROUTE = '/forgot-password';
   static const SIGN_IN_ROUTE = '/signin';
+  static const NOTIFICATION_ROUTE = '/notification';
+  static const REQUEST_ROUTE = '/request';
+  static const GUIDELINES = '/guidelines';
   // App - Routes - Navigation
   static final ROUTES = [
     // Splash - View - Widget
@@ -50,6 +56,24 @@ class AppRoutes {
     GetPage(
       name: SIGN_IN_ROUTE,
       page: () => const SigninView(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    // Notification - View - Widget
+    GetPage(
+      name: NOTIFICATION_ROUTE,
+      page: () => const NotificationView(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    // Request - View - Widget
+    GetPage(
+      name: REQUEST_ROUTE,
+      page: () => const RequestView(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    // GuideLines - View - Widget
+    GetPage(
+      name: GUIDELINES,
+      page: () => const GuideLines(),
       transition: Transition.leftToRightWithFade,
     ),
   ];
