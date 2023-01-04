@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_close_loop_recycling/app/utils/file_path.dart';
+import 'package:open_close_loop_recycling/app/widgets/generic_button.dart';
 
 import '../../../utils/colors.dart';
 
@@ -80,6 +81,12 @@ class Body extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 12.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: GenericButton(onTap: () {}, text: "Contact"),
+          ),
+          SizedBox(height: 12.h),
         ],
       ),
     );
