@@ -90,8 +90,8 @@ class GuideLines extends StatelessWidget {
                                     top: 8.0.h, left: 24.w, bottom: 8.h),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(
-                                      FilePath.DRAWER_PAYMENT_ICON,
+                                    Image.asset(
+                                      DRAWER_ICON_LIST[index]['icon'],
                                     ),
                                     SizedBox(width: 18.w),
                                     Text(
@@ -150,7 +150,7 @@ class GuideLines extends StatelessWidget {
                                     top: 16.0.h, left: 24.w, bottom: 8.h),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(
+                                    Image.asset(
                                       DRAWER_ICON_BOTTOM_LIST[index]['icon'],
                                     ),
                                     SizedBox(width: 18.w),

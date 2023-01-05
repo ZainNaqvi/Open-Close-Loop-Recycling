@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/modules/admin/dashboard/dashboard.dart';
 import 'package:open_close_loop_recycling/app/modules/guidelines/guidelines.dart';
 import 'package:open_close_loop_recycling/app/modules/notification/notification.dart';
 import 'package:open_close_loop_recycling/app/modules/request/request.dart';
@@ -20,6 +21,7 @@ class AppRoutes {
   static const NOTIFICATION_ROUTE = '/notification';
   static const REQUEST_ROUTE = '/request';
   static const GUIDELINES = '/guidelines';
+  static const ADMIN_DASHBOARD_ROUTE = '/dashboard';
   // App - Routes - Navigation
   static final ROUTES = [
     // Splash - View - Widget
@@ -74,6 +76,12 @@ class AppRoutes {
     GetPage(
       name: GUIDELINES,
       page: () => const GuideLines(),
+      transition: Transition.leftToRightWithFade,
+    ),
+    // Dash BOard - View - Widget
+    GetPage(
+      name: ADMIN_DASHBOARD_ROUTE,
+      page: () => const DashBoardView(),
       transition: Transition.leftToRightWithFade,
     ),
   ];

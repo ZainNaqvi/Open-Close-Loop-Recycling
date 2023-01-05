@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
 
 import '../routes/routes.dart';
 import '../services/auth/firebase_auth.dart';
@@ -60,13 +62,15 @@ class SignInController extends GetxController {
       GenericSnackBar(
           text:
               "Successfully loggedIn,\nWelcome to Waste - Management - App once's again!");
-             
+
       userEmailController.clear();
       userPasswordController.clear();
-    
-      Get.offAllNamed(AppRoutes.HOME_ROUTE);
+      FirebaseFirestoreServices _services = FirebaseFirestoreServices();
+      final res = await _services.getUserData();
+      res == 'user'
+          ? Get.offAllNamed(AppRoutes.HOME_ROUTE)
+          : Get.offAllNamed(AppRoutes.ADMIN_DASHBOARD_ROUTE);
       updateIsLoading();
-      
     } else {
       updateIsLoading();
     }

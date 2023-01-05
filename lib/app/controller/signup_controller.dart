@@ -11,6 +11,7 @@ class SignupController extends GetxController {
     isloading = !isloading;
     update();
   }
+
   // Signup - Form - Text - Field - Controller
   // ************************************************
   // User - Name - Field
@@ -64,6 +65,7 @@ class SignupController extends GetxController {
   Future<void> createUser() async {
     updateIsLoading();
     String response = await _dbHelper.createUser(
+      role: 'user',
       name: userNameController.text,
       email: userEmailController.text.trim(),
       password: userPasswordController.text.trim(),

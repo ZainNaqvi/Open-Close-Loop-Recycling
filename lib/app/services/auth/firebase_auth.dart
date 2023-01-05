@@ -34,10 +34,12 @@ class DbHelper {
   // Creating the function which is responsible for the auth related work
 
   // creating - the -  function - to - create - the - user
-  Future<String> createUser(
-      {required String name,
-      required String email,
-      required String password}) async {
+  Future<String> createUser({
+    required String name,
+    required String email,
+    required String password,
+    required String role,
+  }) async {
     String res = "Some error Occured";
     try {
       UserCredential userCredential =
@@ -50,6 +52,7 @@ class DbHelper {
 
       print(userCredential.user!.uid);
       UserCreditials userData = UserCreditials(
+        role: role,
         email: email,
         uid: userCredential.user!.uid,
         name: name,

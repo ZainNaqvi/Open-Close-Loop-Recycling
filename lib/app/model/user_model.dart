@@ -4,6 +4,7 @@ class UserCreditials {
   final name;
   final email;
   final uid;
+  final role;
 
   // final List cart;
   // creating the constructor here...
@@ -11,12 +12,14 @@ class UserCreditials {
     required this.name,
     required this.email,
     required this.uid,
+    required this.role,
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
         'name': name,
         'email': email,
         'uid': uid,
+        'role': role,
       };
   static UserCreditials fromSnap(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
@@ -24,6 +27,7 @@ class UserCreditials {
       name: snapshot['name'],
       uid: snapshot['uid'],
       email: snapshot['email'],
+      role: snapshot['role'],
     );
   }
 }

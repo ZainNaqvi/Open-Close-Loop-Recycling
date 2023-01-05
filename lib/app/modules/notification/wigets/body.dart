@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:open_close_loop_recycling/app/utils/file_path.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -27,12 +29,12 @@ class Body extends StatelessWidget {
               children: List.generate(
                 3,
                 (index) => ListTile(
-                    title: Text(
-                        'Your request #675747 to another Recycling is approved'),
-                    leading: Icon(
-                      Icons.messenger_outline_rounded,
-                      color: Colors.teal,
-                    )),
+                  title: Text(
+                      'Your request #675747 to another Recycling is approved'),
+                  leading: SvgPicture.asset(
+                    FilePath.NOTIFICATION_ICON,
+                  ),
+                ),
               ),
             ),
           ],
