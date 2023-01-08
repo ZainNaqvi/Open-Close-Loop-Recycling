@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_close_loop_recycling/app/modules/fogot/widgets/form.dart';
+import 'package:open_close_loop_recycling/app/modules/request/wigets/form.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
 import 'package:open_close_loop_recycling/app/utils/file_path.dart';
 
@@ -108,7 +109,7 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            ForgotFormWidget(),
+            RequestFormWidget(),
           ],
         ),
       ),
