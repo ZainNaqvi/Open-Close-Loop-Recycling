@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WasteRequest {
   final String? uid;
+  final String? name;
+  final bool? approved;
   final String? address;
   final String? trashType;
   final String? dumperSize;
@@ -11,6 +13,8 @@ class WasteRequest {
 
   WasteRequest({
     required this.uid,
+    required this.name,
+    required this.approved,
     required this.address,
     required this.trashType,
     required this.dumperSize,
@@ -21,6 +25,8 @@ class WasteRequest {
 
   Map<String, dynamic> toJson() => {
         "uid": uid,
+        "name": name,
+        "approved": approved,
         "address": address,
         "trash_type": trashType,
         "dumper_size": dumperSize,
@@ -32,6 +38,8 @@ class WasteRequest {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return WasteRequest(
       uid: snapshot['uid'],
+      name: snapshot['name'],
+      approved: snapshot['approved'],
       address: snapshot['address'],
       trashType: snapshot['trash_type'],
       dumperSize: snapshot['dumper_size'],

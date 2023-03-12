@@ -15,8 +15,14 @@ class RequestController extends GetxController {
   String _startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
   FirebaseFirestoreServices services = FirebaseFirestoreServices();
 
+  bool isLoading = false;
+  updateIsLoading() {
+    isLoading = !isLoading;
+    update();
+  }
+
   Future<void> onUserRequest() async {
-    Get.find<GenericLoader>().genericLoader(true);
+ 
     final response = await services.onUserRequest(
       address: addressController.text,
       trashType: trashTypeController.text,
@@ -27,10 +33,10 @@ class RequestController extends GetxController {
     );
 
     if (response == 'success') {
-      Get.find<GenericLoader>().genericLoader(false);
+
       GenericSnackBar(text: "Your Request Submitted Successfully!");
     } else {
-      Get.find<GenericLoader>().genericLoader(false);
+   
       GenericSnackBar(text: "Internal Error Please Try Again");
     }
   }
@@ -81,9 +87,6 @@ class RequestController extends GetxController {
     return showTimePicker(
         initialEntryMode: TimePickerEntryMode.input,
         context: Get.context!,
-        initialTime: TimeOfDay.now(
-       
-        ));
-
+        initialTime: TimeOfDay.now());
   }
 }

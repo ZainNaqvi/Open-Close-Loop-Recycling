@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserCreditials {
-  final String name;
-  final String email;
-  final String uid;
-  final String role;
+  final String? name;
+  final String ?email;
+  final String? uid;
+  final String? role;
 
   // final List cart;
   // creating the constructor here...

@@ -14,10 +14,6 @@ final List DRAWER_ICON_LIST = [
     'icon': FilePath.DRAWER_GUIDENESS_ICON,
     'text': 'Guidelines',
   },
-  {
-    'icon': FilePath.DRAWER_PAYMENT_ICON,
-    'text': 'Payments',
-  },
 ];
 // ignore: non_constant_identifier_names
 final List DRAWER_ICON_BOTTOM_LIST = [

@@ -34,4 +34,5 @@ class FilePath {
   // V - Image - Home - Icon
   // ignore: non_constant_identifier_names
   static String ERROR_NOTIFICATION_ICON = "assets/svg/error_notification.svg";
+  static const String markerIcon = 'assets/images/marker.png';
 }

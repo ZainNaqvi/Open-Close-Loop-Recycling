@@ -8,4 +8,5 @@ class AppColors {
   // White - View - Color
   static const Color WHITE_COLOR = Color(0xfffffffff);
   static const Color GREY_COLOR = Color(0xff4784C8);
+  static const Color TILE_COLOR = Color(0xffEDEDED);
 }

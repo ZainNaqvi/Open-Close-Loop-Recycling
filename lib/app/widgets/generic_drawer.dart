@@ -57,14 +57,12 @@ Drawer(child: GetBuilder<HomeController>(builder: (controller) {
                    Get.offAllNamed(AppRoutes.HOME_ROUTE);
                                 break;
                               case 1:
-                         
+                                                         Get.toNamed(AppRoutes.ALLREQUEST_ROUTE);
                                 break;
                               case 2:
                                 Get.toNamed(AppRoutes.GUIDELINES);
                                 break;
-                              case 3:
-                             
-                                break;
+                            
 
                               default:
                             }

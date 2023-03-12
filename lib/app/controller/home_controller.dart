@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/controller/request_controller.dart';
 
+
+import '../model/user_model.dart';
 import '../routes/routes.dart';
 import '../services/auth/firebase_auth.dart';
 import '../widgets/generic_snake_bar.dart';
@@ -12,11 +16,15 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+   
     getCurrentPosition();
+    getUserDetails();
+  
   }
 
-  String? _currentAddress;
-  Position? _currentPosition;
+  List userCreditialsData = [];
+  String? currentAddress;
+  Position? currentPosition;
 
   Future<bool> handleLocationPermission() async {
     bool serviceEnabled;
@@ -52,23 +60,22 @@ class HomeController extends GetxController {
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
-      _currentPosition = position;
-
+      currentPosition = position;
       update();
     }).catchError((e) {
       debugPrint(e);
     });
-    getAddressFromLatLng(_currentPosition!);
+    getAddressFromLatLng(currentPosition!);
   }
 
   Future<void> getAddressFromLatLng(Position position) async {
     await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
+            currentPosition!.latitude, currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
-      _currentAddress =
+      currentAddress =
           '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-      Get.find<RequestController>().addressController.text = _currentAddress!;
+      Get.find<RequestController>().addressController.text = currentAddress!;
       update();
     }).catchError((e) {
       debugPrint(e);
@@ -115,6 +122,29 @@ class HomeController extends GetxController {
   int selectedBottomTabIndex = 0;
   updateSelectedBottomIndex(int index) {
     selectedBottomTabIndex = index;
+    update();
+  }
+
+  Future<void> getUserDetails() async {
+  
+    // getting the current user by firebase auth
+    userCreditialsData = [];
+    User currentUser = FirebaseAuth.instance.currentUser!;
+
+    //getting the data
+
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection("user")
+        .doc(currentUser.uid)
+        .get()
+        .catchError(
+      (onError) {
+        print(onError);
+      },
+    );
+
+    userCreditialsData.add(UserCreditials.fromSnap(snapshot));
+  
     update();
   }
 }

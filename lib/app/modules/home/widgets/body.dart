@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      return controller.isloading
+      return controller.currentPosition==null||controller.isloading
           ? const Center(
               child: CircularProgressIndicator(
               color: AppColors.WHITE_COLOR,
@@ -24,6 +24,10 @@ class Body extends StatelessWidget {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
+                  MapScreen(
+                    latititue: controller.currentPosition!.latitude.toString(),
+                    lan: controller.currentPosition!.longitude.toString(),
+                  ),
                   // Map - widget - wil - be - here...
                   Container(
                     padding:
@@ -59,8 +63,8 @@ class Body extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
-                                Text(
-                                  "User Name",
+                          controller.userCreditialsData[0].name==null ?const Center(child: CircularProgressIndicator(strokeWidth: 2),) :   Text(
+                                 controller.userCreditialsData[0].name,
                                   style: TextStyle(
                                     fontSize: 20.sp,
                                     color: AppColors.WHITE_COLOR,
@@ -74,28 +78,23 @@ class Body extends StatelessWidget {
                       ],
                     ),
                   ),
-// Padding(
-//                     padding: const EdgeInsets.symmetric(vertical: 16),
-//                     child: SizedBox(
-//                       height: 200,
-//                       child: MapScreen(
-//                         latititue: "15.225889",
-//                         lan: "12.554764",
-//                       ),
-//                     ),
-//                   ),
-                  Positioned(
-                    bottom: 18.h,
-                    left: 28.w,
-                    child: Column(
-                      children: [
-                        MapButton(iconData: Icons.add, onPressed: () {}),
-                        SizedBox(height: 12.h),
-                        MapButton(iconData: Icons.remove, onPressed: () {}),
-                      ],
-                    ),
-                  ),
-                  
+                  controller.currentPosition == null
+                      ? const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Positioned(
+                          bottom: 18.h,
+                          left: 28.w,
+                          child: Column(
+                            children: [
+                              MapButton(iconData: Icons.add, onPressed: () {}),
+                              SizedBox(height: 12.h),
+                              MapButton(
+                                  iconData: Icons.remove, onPressed: () {}),
+                            ],
+                          ),
+                        ),
+
                   Positioned(
                     bottom: 18.h,
                     right: 28.w,
@@ -103,7 +102,9 @@ class Body extends StatelessWidget {
                       children: [
                         MapButton(
                             iconData: Icons.location_searching_rounded,
-                            onPressed: () {}),
+                            onPressed: () {
+                              controller.getCurrentPosition();
+                            }),
                         SizedBox(height: 12.h),
                         MapButton(
                             iconData: Icons.menu_open,

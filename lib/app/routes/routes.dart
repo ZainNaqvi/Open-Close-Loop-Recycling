@@ -3,6 +3,8 @@ import 'package:open_close_loop_recycling/app/modules/admin/dashboard/dashboard.
 import 'package:open_close_loop_recycling/app/modules/guidelines/guidelines.dart';
 import 'package:open_close_loop_recycling/app/modules/notification/notification.dart';
 import 'package:open_close_loop_recycling/app/modules/request/request.dart';
+import 'package:open_close_loop_recycling/app/modules/all_request/requests.dart';
+import 'package:open_close_loop_recycling/app/modules/request_detail/request_detail.dart';
 import 'package:open_close_loop_recycling/app/modules/signin/singin.dart';
 import '../modules/fogot/forgot.dart';
 import '../modules/home/home_view.dart';
@@ -20,8 +22,11 @@ class AppRoutes {
   static const SIGN_IN_ROUTE = '/signin';
   static const NOTIFICATION_ROUTE = '/notification';
   static const REQUEST_ROUTE = '/request';
+  static const ALLREQUEST_ROUTE = '/all-request-route';
   static const GUIDELINES = '/guidelines';
   static const ADMIN_DASHBOARD_ROUTE = '/dashboard';
+
+
   // App - Routes - Navigation
   static final ROUTES = [
     // Splash - View - Widget
@@ -84,5 +89,12 @@ class AppRoutes {
       page: () => const DashBoardView(),
       transition: Transition.leftToRightWithFade,
     ),
+    // My - Request - View - Widget
+    GetPage(
+      name: ALLREQUEST_ROUTE,
+      page: () => const AllRequestsScreen(),
+      transition: Transition.leftToRightWithFade,
+    ),
+
   ];
 }
