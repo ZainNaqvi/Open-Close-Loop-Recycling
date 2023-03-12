@@ -35,7 +35,7 @@ Drawer(child: GetBuilder<HomeController>(builder: (controller) {
             ),
             SizedBox(height: 12.h),
             Text(
-              "User Name",
+              controller.userCreditialsData[0].name.toString(),
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.sp,
