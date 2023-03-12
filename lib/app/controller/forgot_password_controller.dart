@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:get/get.dart';
-import 'package:open_close_loop_recycling/app/utils/colors.dart';
 
 import '../routes/routes.dart';
 import '../services/auth/firebase_auth.dart';
@@ -25,7 +23,7 @@ class ForgotPasswordController extends GetxController {
 
   // Creating - The - Object - DbHelper
 
-  DbHelper _dbHelper = DbHelper();
+  final DbHelper _dbHelper = DbHelper();
 
   // Creating - New - User - Here
 

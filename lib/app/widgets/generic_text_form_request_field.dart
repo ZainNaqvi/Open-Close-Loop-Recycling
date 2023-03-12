@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Container GenericRequestFormFIeld({
+// ignore: non_constant_identifier_names
+Container GenericRequestFormFIeld({String? Function(String?)? validator,
   required String hintText,
   required String title,
   required final controller,
@@ -24,37 +25,29 @@ Container GenericRequestFormFIeld({
             fontSize: 15.sp,
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: title == '' ? 0.h : 8.h),
-          alignment: Alignment.center,
-          height: height.h,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(
-              color: Colors.black,
-            ),
-          ),
-          child: TextFormField(
-            maxLines: maxLines,
-            readOnly: readOnly,
-            controller: controller,
-            textInputAction: TextInputAction.next,
-            style: TextStyle(height: 1.3.r),
-            decoration: InputDecoration(
-              suffixIcon: suffixIcon != null
-                  ? IconButton(
-                      icon: Icon(suffixIcon),
-                      onPressed: onPressed,
-                    )
-                  : SizedBox(),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-              hintText: hintText,
-              enabledBorder: outlinedInputBorder(),
-              border: outlinedInputBorder(),
-              focusedBorder: outlinedInputBorder(),
-            ),
+       maxLines==1?SizedBox(height: 8.h): SizedBox(height: 0.h),
+        TextFormField(
+          maxLines: maxLines,
+          readOnly: readOnly,
+          controller: controller,
+          validator: validator ,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          textInputAction: TextInputAction.next,
+          style: TextStyle(height: 1.3.r),
+          decoration: InputDecoration(
+            
+            suffixIcon: suffixIcon != null
+                ? IconButton(
+                    icon: Icon(suffixIcon),
+                    onPressed: onPressed,
+                  )
+                : const SizedBox(),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+            hintText: hintText,
+            enabledBorder: outlinedInputBorder(),
+            border: outlinedInputBorder(),
+            focusedBorder: outlinedInputBorder(),
           ),
         ),
       ],
@@ -63,5 +56,5 @@ Container GenericRequestFormFIeld({
 }
 
 OutlineInputBorder outlinedInputBorder() {
-  return OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent));
+  return const OutlineInputBorder(borderSide: BorderSide(color: Colors.black));
 }

@@ -1,5 +1,6 @@
 import 'package:open_close_loop_recycling/app/utils/file_path.dart';
 
+// ignore: non_constant_identifier_names
 final List DRAWER_ICON_LIST = [
   {
     'icon': FilePath.DRAWER_HOME_ICON,
@@ -18,6 +19,7 @@ final List DRAWER_ICON_LIST = [
     'text': 'Payments',
   },
 ];
+// ignore: non_constant_identifier_names
 final List DRAWER_ICON_BOTTOM_LIST = [
   {
     'icon': FilePath.DRAWER_HOME_ICON,

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
 
+// ignore: non_constant_identifier_names
 Widget GenericButton({
   required String text,
   required VoidCallback onPressed,

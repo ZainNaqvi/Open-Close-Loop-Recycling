@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
 
+// ignore: must_be_immutable
 class GenericTextField extends StatelessWidget {
   String? hintText;
   TextEditingController? controller;
@@ -83,7 +84,7 @@ class GenericTextField extends StatelessWidget {
                       EdgeInsets.only(bottom: 0.0, top: 15.0.r, left: 8.w),
                   errorMaxLines: 2,
                   isDense: true,
-                  errorStyle: TextStyle(
+                  errorStyle: const TextStyle(
                     color: Colors.red,
                     height: 0,
                   ),

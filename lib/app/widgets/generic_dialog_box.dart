@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'generic_button.dart';
-
+// ignore: non_constant_identifier_names
 GenericDialog({
   required BuildContext context,
   required VoidCallback pressed,
@@ -18,6 +18,7 @@ GenericDialog({
         pressed: pressed,
       ),
     );
+// ignore: non_constant_identifier_names
 GenericDialogBox({
   required VoidCallback pressed,
   required String alertMessage,
@@ -28,13 +29,13 @@ GenericDialogBox({
       borderRadius: BorderRadius.circular(16.0.r),
     ), //this right here
     child: AnimatedContainer(
-      duration: Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 600),
       height: 154.0.h,
       width: Get.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: EdgeInsets.all(15.0.r),
             child: Text(

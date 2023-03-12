@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
@@ -45,14 +45,12 @@ class SignInController extends GetxController {
 
   // Creating - The - Object - DbHelper
 
-  DbHelper _dbHelper = DbHelper();
+  final DbHelper _dbHelper = DbHelper();
 
   // Creating - New - User - Here
 
   Future<void> loginUser() async {
     updateIsLoading();
-    print(userEmailController.text);
-    print(userPasswordController.text);
     String response = await _dbHelper.userLogin(
       email: userEmailController.text.trim(),
       password: userPasswordController.text.trim(),
@@ -65,8 +63,8 @@ class SignInController extends GetxController {
 
       userEmailController.clear();
       userPasswordController.clear();
-      FirebaseFirestoreServices _services = FirebaseFirestoreServices();
-      final res = await _services.getUserData();
+      FirebaseFirestoreServices services = FirebaseFirestoreServices();
+      final res = await services.getUserData();
       res == 'user'
           ? Get.offAllNamed(AppRoutes.HOME_ROUTE)
           : Get.offAllNamed(AppRoutes.ADMIN_DASHBOARD_ROUTE);

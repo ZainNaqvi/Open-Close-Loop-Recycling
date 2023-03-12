@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:open_close_loop_recycling/app/widgets/generic_button.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_snake_bar.dart';
 // ignore: avoid_web_libraries_in_flutter
 // import 'dart:html' as html;
@@ -25,7 +22,7 @@ class DbHelper {
         .get()
         .catchError(
       (onError) {
-        print(onError);
+
       },
     );
 
@@ -47,10 +44,7 @@ class DbHelper {
         email: email,
         password: password,
       );
-
       // Getting - Response - Firebase - Auth
-
-      print(userCredential.user!.uid);
       UserCreditials userData = UserCreditials(
         role: role,
         email: email,
@@ -87,7 +81,7 @@ class DbHelper {
       GenericSnackBar(text: "Email Verification code is send to your email.");
 
       res = "success";
-    } on FirebaseException catch (e) {
+    } on FirebaseException {
       GenericSnackBar(text: "Some error occured");
     }
     return res;
@@ -102,7 +96,7 @@ class DbHelper {
     // checking the values are empty or not
     try {
       // now checking and login the user
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
+    await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       if (!_auth.currentUser!.emailVerified) {
         await _auth.currentUser!.sendEmailVerification();
@@ -135,7 +129,7 @@ class DbHelper {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       res = 'success';
-    } on FirebaseException catch (e) {
+    } on FirebaseException {
       GenericSnackBar(text: "Some error occured");
     }
     return res;

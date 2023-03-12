@@ -1,17 +1,12 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:open_close_loop_recycling/app/modules/request/request.dart';
 import 'package:open_close_loop_recycling/app/routes/routes.dart';
 import 'package:open_close_loop_recycling/app/utils/file_path.dart';
 
 import '../../../controller/home_controller.dart';
 import '../../../utils/colors.dart';
+import '../../../widgets/generic_map_screen.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -20,7 +15,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
       return controller.isloading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
               color: AppColors.WHITE_COLOR,
             ))
@@ -56,7 +51,7 @@ class Body extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Welcome",
                                   style: TextStyle(
                                     color: AppColors.WHITE_COLOR,
@@ -79,7 +74,16 @@ class Body extends StatelessWidget {
                       ],
                     ),
                   ),
-
+// Padding(
+//                     padding: const EdgeInsets.symmetric(vertical: 16),
+//                     child: SizedBox(
+//                       height: 200,
+//                       child: MapScreen(
+//                         latititue: "15.225889",
+//                         lan: "12.554764",
+//                       ),
+//                     ),
+//                   ),
                   Positioned(
                     bottom: 18.h,
                     left: 28.w,
@@ -91,6 +95,7 @@ class Body extends StatelessWidget {
                       ],
                     ),
                   ),
+                  
                   Positioned(
                     bottom: 18.h,
                     right: 28.w,
@@ -114,6 +119,7 @@ class Body extends StatelessWidget {
     });
   }
 
+  // ignore: non_constant_identifier_names
   Container MapButton(
       {required VoidCallback onPressed, required IconData iconData}) {
     return Container(

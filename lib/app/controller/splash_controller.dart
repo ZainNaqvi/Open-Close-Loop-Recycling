@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../routes/routes.dart';
@@ -18,16 +16,16 @@ class SplashController extends GetxController {
   }
 
   gotoToNextPage() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-      final FirebaseAuth _auth = FirebaseAuth.instance;
+      final FirebaseAuth auth = FirebaseAuth.instance;
 
-      if (_auth.currentUser == null) {
+      if (auth.currentUser == null) {
         Get.offAllNamed(AppRoutes.ONBOARDING_ROUTE);
-      } else if (_auth.currentUser!.emailVerified &&
-          _auth.currentUser != null) {
+      } else if (auth.currentUser!.emailVerified &&
+          auth.currentUser != null) {
         Get.offAllNamed(AppRoutes.HOME_ROUTE);
       } else {
         Get.offAllNamed(AppRoutes.ONBOARDING_ROUTE);

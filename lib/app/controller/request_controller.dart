@@ -1,36 +1,89 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../routes/routes.dart';
-import '../services/auth/firebase_auth.dart';
+import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
+import 'package:intl/intl.dart';
 import '../widgets/generic_snake_bar.dart';
+import 'generic_loader.dart';
 
 class RequestController extends GetxController {
-  // Onloading -
-  bool isloading = false;
-  void updateIsLoading() {
-    isloading = !isloading;
+  TextEditingController addressController = TextEditingController();
+  TextEditingController trashTypeController = TextEditingController();
+  TextEditingController dumperSizeController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
+  String _startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
+  FirebaseFirestoreServices services = FirebaseFirestoreServices();
+
+  Future<void> onUserRequest() async {
+    Get.find<GenericLoader>().genericLoader(true);
+    final response = await services.onUserRequest(
+      address: addressController.text,
+      trashType: trashTypeController.text,
+      dumperSize: dumperSizeController.text,
+      date: dateController.text,
+      time: timeController.text,
+      message: messageController.text,
+    );
+
+    if (response == 'success') {
+      Get.find<GenericLoader>().genericLoader(false);
+      GenericSnackBar(text: "Your Request Submitted Successfully!");
+    } else {
+      Get.find<GenericLoader>().genericLoader(false);
+      GenericSnackBar(text: "Internal Error Please Try Again");
+    }
+  }
+
+  callCalender(
+    BuildContext context,
+  ) async {
+    DateTime? pickedDate = await showDatePicker(
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+                textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: Get.isDarkMode
+                    ? Colors.white
+                    : Colors.black, // button text color
+              ),
+            )),
+            child: child!,
+          );
+        },
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2101));
+    if (pickedDate != null) {
+      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+      dateController.text = formattedDate;
+      update();
+    } else {}
+  }
+
+  getUserTIme() async {
+    var userPickTime = await onShowTimePicker();
+    String formatedTime = userPickTime.format(Get.context!);
+    if (userPickTime == null) {
+      GenericSnackBar(text: "Time is not valid time cancelled");
+    } else {
+      _startTime = formatedTime;
+      timeController.text = _startTime;
+
+      print(_startTime);
+    }
     update();
   }
-  // **********************************************
-  // ********** Firebase - Crud - Operations *******************
-  //***********************************************
 
-  // Creating - The - Object - DbHelper
+  onShowTimePicker() {
+    return showTimePicker(
+        initialEntryMode: TimePickerEntryMode.input,
+        context: Get.context!,
+        initialTime: TimeOfDay.now(
+       
+        ));
 
-  DbHelper _dbHelper = DbHelper();
-
-  // Creating - New - User - Here
-
-  Future<void> signOut() async {
-    updateIsLoading();
-    String response = await _dbHelper.signOut();
-    // Checking - Response ->
-    if (response == 'success') {
-      GenericSnackBar(text: "Successfully Signout!");
-      Get.offAllNamed(AppRoutes.SIGN_IN_ROUTE);
-      updateIsLoading();
-    } else {
-      updateIsLoading();
-    }
   }
 }

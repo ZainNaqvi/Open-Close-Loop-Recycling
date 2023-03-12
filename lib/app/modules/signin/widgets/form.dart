@@ -56,7 +56,7 @@ class SigninFormWidget extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed(AppRoutes.FORGOT_PASSWORD_ROUTE);
                 },
-                child: Text(
+                child: const Text(
                   "Forgot Password",
                   style: TextStyle(
                     color: AppColors.WHITE_COLOR,
@@ -67,7 +67,7 @@ class SigninFormWidget extends StatelessWidget {
             ),
             SizedBox(height: 44.h),
             controller.isloading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.WHITE_COLOR,
                       semanticsLabel: 'processing...',

@@ -6,7 +6,7 @@ class OnboardingView extends StatelessWidget {
   const OnboardingView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.WHITE_COLOR,
       body: Body(),
     );

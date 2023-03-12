@@ -33,7 +33,7 @@ class ForgotFormWidget extends StatelessWidget {
             ),
             SizedBox(height: 34.h),
             controller.isloading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.WHITE_COLOR,
                       semanticsLabel: 'processing...',
@@ -59,7 +59,7 @@ class ForgotFormWidget extends StatelessWidget {
               onPressed: () {
                 Get.back();
               },
-              child: Text(
+              child: const Text(
                 "Go Back",
                 style: TextStyle(
                   color: AppColors.WHITE_COLOR,

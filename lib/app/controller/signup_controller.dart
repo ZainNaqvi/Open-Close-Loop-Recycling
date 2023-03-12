@@ -58,7 +58,7 @@ class SignupController extends GetxController {
 
   // Creating - The - Object - DbHelper
 
-  DbHelper _dbHelper = DbHelper();
+  final DbHelper _dbHelper = DbHelper();
 
   // Creating - New - User - Here
 

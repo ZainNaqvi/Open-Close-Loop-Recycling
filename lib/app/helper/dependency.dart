@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/controller/forgot_password_controller.dart';
+import 'package:open_close_loop_recycling/app/controller/generic_loader.dart';
 import 'package:open_close_loop_recycling/app/controller/home_controller.dart';
 import 'package:open_close_loop_recycling/app/controller/request_controller.dart';
 import '../controller/signin_controller.dart';
@@ -19,4 +20,6 @@ Future<void> init() async {
   Get.lazyPut(() => ForgotPasswordController(), fenix: true);
   // Request - Recycling - View - Controller
   Get.lazyPut(() => RequestController(), fenix: true);
+  // Generic - Loader - Controller
+  Get.lazyPut(() => GenericLoader(), fenix: true);
 }

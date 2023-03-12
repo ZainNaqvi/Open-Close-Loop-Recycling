@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/routes/routes.dart';
 import 'package:open_close_loop_recycling/app/utils/colors.dart';
 
+// ignore: non_constant_identifier_names
 Row Already_Have_Account() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
+      const Text(
         "Already have a account?  ",
         style: TextStyle(color: AppColors.WHITE_COLOR),
       ),
@@ -15,7 +16,7 @@ Row Already_Have_Account() {
         onTap: () {
           Get.toNamed(AppRoutes.SIGN_IN_ROUTE);
         },
-        child: Text(
+        child: const Text(
           "Login Now",
           style: TextStyle(
             color: AppColors.WHITE_COLOR,

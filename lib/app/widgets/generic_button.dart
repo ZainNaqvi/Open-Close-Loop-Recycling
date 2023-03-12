@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/colors.dart';
 
+// ignore: must_be_immutable
 class GenericButton extends StatelessWidget {
   final String text;
   VoidCallback? onTap;
@@ -10,7 +11,7 @@ class GenericButton extends StatelessWidget {
   final double margin;
   GenericButton({
     Key? key,
-    this.isBackground = null,
+    this.isBackground,
     required this.onTap,
     this.margin = 0,
     this.width = double.maxFinite,

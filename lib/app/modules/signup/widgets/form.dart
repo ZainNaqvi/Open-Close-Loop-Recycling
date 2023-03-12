@@ -79,7 +79,7 @@ class SignupForm extends StatelessWidget {
 
             // Signup - Form - Generic - Button
             controller.isloading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: AppColors.WHITE_COLOR,
                       semanticsLabel: "Proccessing...",

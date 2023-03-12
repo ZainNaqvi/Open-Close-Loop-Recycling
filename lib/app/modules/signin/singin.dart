@@ -14,9 +14,9 @@ class SigninView extends StatelessWidget {
         Get.offAllNamed(AppRoutes.ONBOARDING_ROUTE);
         return true;
       },
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: AppColors.PRIMARY_COLOR,
-        body: const Body(),
+        body: Body(),
       ),
     );
   }

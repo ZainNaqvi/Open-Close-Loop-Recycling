@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import '../../../routes/routes.dart';
 import '../../../utils/colors.dart';
 
+// ignore: non_constant_identifier_names
 Row DontHaveAccount() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text(
+      const Text(
         "Don’t have an account?  ",
         style: TextStyle(
           color: AppColors.WHITE_COLOR,
@@ -18,7 +19,7 @@ Row DontHaveAccount() {
         onTap: () {
           Get.toNamed(AppRoutes.SIGNUP_ROUTE);
         },
-        child: Text(
+        child: const Text(
           "Sign Up Now",
           style: TextStyle(
             color: AppColors.WHITE_COLOR,
