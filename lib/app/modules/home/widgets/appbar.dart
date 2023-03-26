@@ -65,8 +65,8 @@ if (snapshot.connectionState == ConnectionState.waiting) {
                 children: [
                   const Icon(Icons.notifications_active_outlined),
                   Positioned(
-                    top: -6.h,
-                    right: -6.w,
+                    top: -4.h,
+                    right: -3.w,
                     child: Container(
                       padding: EdgeInsets.all(2.r),
                       decoration: const BoxDecoration(

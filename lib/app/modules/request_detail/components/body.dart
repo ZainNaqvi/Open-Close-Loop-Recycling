@@ -100,7 +100,7 @@ class _BodyState extends State<Body> {
     setState(() {
       isLoading = true;
     });
-    await firebaseFirestoreServices.updateNotification(requestId);
+    await firebaseFirestoreServices.updateNotification(requestId,'The approval for this request has been granted.');
 
     await FirebaseFirestore.instance
         .collection('waste_request')

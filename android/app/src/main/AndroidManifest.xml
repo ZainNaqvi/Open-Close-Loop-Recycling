@@ -2,7 +2,7 @@
     package="com.open_close_loop_recycling.open_close_loop_recycling">
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
-        android:label="open_close_loop_recycling"
+        android:label="Waste Management"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"

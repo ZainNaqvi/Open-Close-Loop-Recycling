@@ -32,7 +32,8 @@ class FirebaseFirestoreServices {
     try {
       Get.find<GenericLoader>().onLoading(true);
       String postId = const Uuid().v1();
-      await updateNotification(postId);
+      await updateNotification(postId,
+          'Thank you for submitting your request. Your request has been received and is now pending approval from the admin.');
       WasteRequest userPost = WasteRequest(
         requestId: postId,
         name: Get.find<HomeController>().userCreditialsData[0].name.toString(),
@@ -64,14 +65,13 @@ class FirebaseFirestoreServices {
     return res;
   }
 
-  Future<String> updateNotification(String requestId) async {
+  Future<String> updateNotification(String requestId, String message) async {
     String res = "Some error Occured";
     try {
       String notificatoinId = const Uuid().v1();
       _firebaseFirestore.collection("notification").doc(notificatoinId).set({
         'uid': FirebaseAuth.instance.currentUser!.uid,
-        'message':
-            'Thank you for submitting your request. Your request has been received and is now pending approval from the admin.',
+        'message': message,
         'read': false,
         'timestamp': FieldValue.serverTimestamp(),
         'notification_id': notificatoinId,
