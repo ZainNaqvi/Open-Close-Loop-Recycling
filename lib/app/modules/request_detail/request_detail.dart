@@ -6,12 +6,13 @@ import 'components/body.dart';
 
 class RequestDetail extends StatelessWidget {
   final data;
-  const RequestDetail({super.key,required this.data});
+  bool t;
+   RequestDetail({super.key,required this.data,this.t=false});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(data: data),
+      body: Body(data: data,t:t ),
       appBar: appbar(),
     );
   }

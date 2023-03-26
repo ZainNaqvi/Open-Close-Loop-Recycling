@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
 import 'package:intl/intl.dart';
 import '../widgets/generic_snake_bar.dart';
-import 'generic_loader.dart';
 
 class RequestController extends GetxController {
   TextEditingController addressController = TextEditingController();
@@ -22,7 +21,6 @@ class RequestController extends GetxController {
   }
 
   Future<void> onUserRequest() async {
- 
     final response = await services.onUserRequest(
       address: addressController.text,
       trashType: trashTypeController.text,
@@ -33,12 +31,11 @@ class RequestController extends GetxController {
     );
 
     if (response == 'success') {
-
       GenericSnackBar(text: "Your Request Submitted Successfully!");
     } else {
-   
       GenericSnackBar(text: "Internal Error Please Try Again");
     }
+    update();
   }
 
   callCalender(
@@ -66,7 +63,7 @@ class RequestController extends GetxController {
       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
       dateController.text = formattedDate;
       update();
-    } else {}
+    }
   }
 
   getUserTIme() async {

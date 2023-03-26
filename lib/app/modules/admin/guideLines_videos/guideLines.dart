@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../../utils/colors.dart';
+import 'guide_lines_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class AdminGuideLinesView extends StatelessWidget {
+  const AdminGuideLinesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +66,32 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
+            GestureDetector(
+              onTap: () {
+                Get.to(const GuideLinesForm());
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+                width: double.maxFinite,
+                padding: EdgeInsets.all(12.r),
+                decoration: BoxDecoration(
+                  color: AppColors.PRIMARY_BACK_COLOR,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: Row(children: [
+                  SizedBox(width: 2.w),
+                  SvgPicture.asset('assets/svg/gallery.svg'),
+                  SizedBox(width: 12.w),
+                  const Text(
+                    "Upload New Video",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ]),
+              ),
+            ),
             SizedBox(height: 8.h),
             GuideLinesVideos(),
             SizedBox(height: 12.h),
@@ -106,7 +133,7 @@ class GuideLinesVideos extends StatelessWidget {
               );
 
               return Padding(
-                padding: EdgeInsets.only(bottom: 18.h, left: 12.w, right: 12.w),
+                padding: EdgeInsets.only(bottom: 18.h,left: 12.w,right: 12.w),
                 child: Stack(
                   children: [
                     AspectRatio(
@@ -117,8 +144,7 @@ class GuideLinesVideos extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                        bottom: 8,
-                        left: 12.w,
+                        bottom: 8,left: 12.w,
                         child: Text(
                           videoTitle,
                           style: const TextStyle(

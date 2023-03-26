@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,11 @@ class SplashController extends GetxController {
   }
 
   gotoToNextPage() async {
+    DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+        .collection('user')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    String userRole = userSnapshot.get('role');
     await Future.delayed(const Duration(seconds: 1));
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
@@ -25,15 +31,19 @@ class SplashController extends GetxController {
       if (auth.currentUser == null) {
         Get.offAllNamed(AppRoutes.ONBOARDING_ROUTE);
       } else if (auth.currentUser!.emailVerified &&
-          auth.currentUser != null) {
+          auth.currentUser != null &&
+          userRole == 'user') {
         Get.offAllNamed(AppRoutes.HOME_ROUTE);
+      } else if (auth.currentUser!.emailVerified &&
+          auth.currentUser != null &&
+          userRole == 'admin') {
+        Get.offAllNamed(AppRoutes.ADMIN_DASHBOARD_ROUTE);
       } else {
         Get.offAllNamed(AppRoutes.ONBOARDING_ROUTE);
       }
     } else {
       GenericSnackBar(text: "No internet connection found");
       GenericSnackBar(text: "Plese try again later...");
- 
     }
   }
 }

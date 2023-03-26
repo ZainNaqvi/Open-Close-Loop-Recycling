@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/controller/request_controller.dart';
 
-
+import '../model/notification_model.dart';
 import '../model/user_model.dart';
 import '../routes/routes.dart';
 import '../services/auth/firebase_auth.dart';
@@ -16,10 +16,9 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-   
+
     getCurrentPosition();
     getUserDetails();
-  
   }
 
   List userCreditialsData = [];
@@ -126,7 +125,6 @@ class HomeController extends GetxController {
   }
 
   Future<void> getUserDetails() async {
-  
     // getting the current user by firebase auth
     userCreditialsData = [];
     User currentUser = FirebaseAuth.instance.currentUser!;
@@ -144,7 +142,64 @@ class HomeController extends GetxController {
     );
 
     userCreditialsData.add(UserCreditials.fromSnap(snapshot));
-  
+
     update();
+  }
+
+  Future<List<NotificationModel>> getUnreadNotifications() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('notification')
+        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('read', isEqualTo: false)
+        .get();
+
+    List<NotificationModel> notifications = [];
+
+    querySnapshot.docs.forEach((doc) {
+      Timestamp timestamp = doc['timestamp'];
+      NotificationModel notification = NotificationModel(requestId: doc['request_id'],
+        notificationId: doc['notification_id'],
+        id: doc.id,
+        message: doc['message'],
+        read: doc['read'],
+        timestamp: Timestamp.fromDate(timestamp.toDate()),
+      );
+
+      notifications.add(notification);
+    });
+
+    return notifications;
+  }
+
+  Future<void> markNotificationAsRead(String notificationId) async {
+    await FirebaseFirestore.instance
+        .collection('notification')
+        .doc(notificationId)
+        .update({'read': true});
+    update();
+  }
+
+  Future<List<NotificationModel>> getAllNotification() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('notification')
+        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    List<NotificationModel> notifications = [];
+
+    querySnapshot.docs.forEach((doc) {
+      Timestamp timestamp = doc['timestamp'];
+      NotificationModel notification = NotificationModel(requestId: doc['request_id'],
+        notificationId: doc['notification_id'],
+        id: doc.id,
+        message: doc['message'],
+        read: doc['read'],
+        timestamp: Timestamp.fromDate(timestamp.toDate()),
+      );
+
+      notifications.add(notification);
+    });
+
+    return notifications;
   }
 }

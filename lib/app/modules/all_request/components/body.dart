@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/controller/request_controller.dart';
-import 'package:open_close_loop_recycling/app/modules/all_request/requests.dart';
 import 'package:open_close_loop_recycling/app/modules/request_detail/request_detail.dart';
-import 'package:open_close_loop_recycling/app/routes/routes.dart';
-import 'package:open_close_loop_recycling/app/utils/colors.dart';
-import 'package:open_close_loop_recycling/app/utils/file_path.dart';
+
 
 import '../../../widgets/request_tile.dart';
 

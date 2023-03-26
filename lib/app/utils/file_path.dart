@@ -31,6 +31,8 @@ class FilePath {
   static String WASTE_IMAGE_REQUEST = "assets/images/waste_request.png";
   // V - Image - Home - Icon
   static String NOTIFICATION_ICON = "assets/svg/notification.svg";
+  static String APPLICATION_ICON = "assets/svg/application.png";
+  static String REVIEWS_ICON = "assets/svg/reviews.png";
   // V - Image - Home - Icon
   // ignore: non_constant_identifier_names
   static String ERROR_NOTIFICATION_ICON = "assets/svg/error_notification.svg";

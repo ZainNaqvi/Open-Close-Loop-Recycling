@@ -6,10 +6,12 @@ import '../utils/file_path.dart';
 
 class RequstTIle extends StatelessWidget {
   final data;
+  bool t;
   VoidCallback? onTap;
   RequstTIle({
     Key? key,
     required this.data,
+    this.t=false,
     this.onTap,
   }) : super(key: key);
 
@@ -20,7 +22,7 @@ class RequstTIle extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 12.h),
         decoration: BoxDecoration(
-            color: AppColors.PRIMARY_BACK_COLOR.withOpacity(0.05),
+            color:t?AppColors.PRIMARY_BACK_COLOR: AppColors.PRIMARY_BACK_COLOR.withOpacity(0.05),
             borderRadius: BorderRadius.circular(12.r)),
         width: double.maxFinite,
         padding: EdgeInsets.all(6.r),
@@ -40,8 +42,8 @@ class RequstTIle extends StatelessWidget {
                 child: Text(
                   data['message'],
                   maxLines: 1,
-                  style: const TextStyle(
-                    overflow: TextOverflow.ellipsis,
+                  style:  TextStyle(
+                    overflow: TextOverflow.ellipsis,color: t?Colors.white:Colors.black,
                   ),
                 ),
               ),
@@ -50,9 +52,9 @@ class RequstTIle extends StatelessWidget {
           const Expanded(child: SizedBox()),
           GestureDetector(
               onTap: () {},
-              child: const Icon(
+              child:  Icon(
                 Icons.keyboard_arrow_right_outlined,
-                color: AppColors.PRIMARY_COLOR,
+                color: t?Colors.white: AppColors.PRIMARY_COLOR,
               )),
           SizedBox(
             width: 8.w,

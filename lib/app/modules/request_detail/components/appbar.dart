@@ -12,15 +12,6 @@ AppBar appbar() {
     centerTitle: true,
     elevation: 0,
     backgroundColor: AppColors.PRIMARY_COLOR,
-    actions: [
-      IconButton(
-        onPressed: () {
-          Get.toNamed(AppRoutes.NOTIFICATION_ROUTE);
-        },
-        icon: SvgPicture.asset(
-          FilePath.BELL_ICON,
-        ),
-      ),
-    ],
+    
   );
 }

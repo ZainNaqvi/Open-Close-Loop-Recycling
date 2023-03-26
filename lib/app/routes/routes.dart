@@ -65,12 +65,7 @@ class AppRoutes {
       page: () => const SigninView(),
       transition: Transition.leftToRightWithFade,
     ),
-    // Notification - View - Widget
-    GetPage(
-      name: NOTIFICATION_ROUTE,
-      page: () => const NotificationView(),
-      transition: Transition.leftToRightWithFade,
-    ),
+   
     // Request - View - Widget
     GetPage(
       name: REQUEST_ROUTE,
