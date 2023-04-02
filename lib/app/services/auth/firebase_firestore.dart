@@ -21,6 +21,9 @@ class FirebaseFirestoreServices {
   }
 
   Future<String> onUserRequest({
+
+    required String lan,
+    required String lat,
     required String address,
     required String trashType,
     required String dumperSize,
@@ -36,6 +39,8 @@ class FirebaseFirestoreServices {
           'Thank you for submitting your request. Your request has been received and is now pending approval from the admin.');
       WasteRequest userPost = WasteRequest(
         requestId: postId,
+        lat: lat,
+        lan: lan,
         name: Get.find<HomeController>().userCreditialsData[0].name.toString(),
         uid: _auth.currentUser!.uid,
         address: address,

@@ -60,10 +60,12 @@ class HomeController extends GetxController {
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
       currentPosition = position;
+
       update();
     }).catchError((e) {
       debugPrint(e);
     });
+    print('... ${currentPosition!.latitude} ${currentPosition!.longitude} ...');
     getAddressFromLatLng(currentPosition!);
   }
 
@@ -157,7 +159,8 @@ class HomeController extends GetxController {
 
     querySnapshot.docs.forEach((doc) {
       Timestamp timestamp = doc['timestamp'];
-      NotificationModel notification = NotificationModel(requestId: doc['request_id'],
+      NotificationModel notification = NotificationModel(
+        requestId: doc['request_id'],
         notificationId: doc['notification_id'],
         id: doc.id,
         message: doc['message'],
@@ -189,7 +192,8 @@ class HomeController extends GetxController {
 
     querySnapshot.docs.forEach((doc) {
       Timestamp timestamp = doc['timestamp'];
-      NotificationModel notification = NotificationModel(requestId: doc['request_id'],
+      NotificationModel notification = NotificationModel(
+        requestId: doc['request_id'],
         notificationId: doc['notification_id'],
         id: doc.id,
         message: doc['message'],

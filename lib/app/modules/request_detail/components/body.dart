@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
 import 'package:open_close_loop_recycling/app/widgets/generic_button.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../widgets/tile.dart';
 
 class Body extends StatefulWidget {
@@ -41,24 +41,49 @@ class _BodyState extends State<Body> {
           SizedBox(height: 16.h),
           Tile(title: 'Type', value: widget.data['trash_type']),
           SizedBox(height: 16.h),
-          Tile(title: 'Dumper', value: widget.data['dumper_size']),
+          Tile(title: 'Size', value: widget.data['dumper_size']),
           SizedBox(height: 16.h),
           Tile(title: 'Date', value: widget.data['date']),
           SizedBox(height: 16.h),
           Tile(title: 'Time', value: widget.data['time']),
           SizedBox(height: 24.h),
+          Tile(title: 'Message', value: widget.data['message']),
+          SizedBox(height: 18.h),
           widget.t
               ? isLoading
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : widget.data['approved']
-                      ? SizedBox()
+                      ? const SizedBox()
                       : GenericButton(
                           onTap: () async {
                             await requestId(widget.data['request_id']);
                           },
                           text: 'Approve')
+              : const SizedBox(),
+          SizedBox(height: 4.h),
+          widget.t
+              ?  TextButton(
+                      onPressed: () async {
+                        final url =
+                            'https://www.google.com/maps/search/?api=1&query=${widget.data["lat"]},${widget.data["lan"]}';
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.location_on_outlined),
+                            Text('Location'),
+                          ],
+                        ),
+                      ),
+                    )
               : const SizedBox(),
           const Spacer(),
           widget.t
@@ -100,7 +125,8 @@ class _BodyState extends State<Body> {
     setState(() {
       isLoading = true;
     });
-    await firebaseFirestoreServices.updateNotification(requestId,'The approval for this request has been granted.');
+    await firebaseFirestoreServices.updateNotification(
+        requestId, 'The approval for this request has been granted.');
 
     await FirebaseFirestore.instance
         .collection('waste_request')

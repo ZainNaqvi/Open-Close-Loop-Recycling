@@ -24,6 +24,7 @@ dependencies:
   geocoding:
   badges: ^3.0.3
   youtube_player_flutter: ^8.1.2
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_lints: ^2.0.0

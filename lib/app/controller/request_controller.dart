@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:open_close_loop_recycling/app/services/auth/firebase_firestore.dart';
 import 'package:intl/intl.dart';
 import '../widgets/generic_snake_bar.dart';
+import 'home_controller.dart';
 
 class RequestController extends GetxController {
   TextEditingController addressController = TextEditingController();
@@ -22,6 +23,8 @@ class RequestController extends GetxController {
 
   Future<void> onUserRequest() async {
     final response = await services.onUserRequest(
+      lan: Get.find<HomeController>().currentPosition!.longitude.toString(),
+      lat: Get.find<HomeController>().currentPosition!.latitude.toString(),
       address: addressController.text,
       trashType: trashTypeController.text,
       dumperSize: dumperSizeController.text,

@@ -15,16 +15,17 @@ class Tile extends StatelessWidget {
         Row(
           children: [
             SizedBox(
-              width: 70.w,
+              width: 74.w,
               child: Text(
                 title,
+                maxLines: 1,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 18.sp,
+                  fontSize: 18.sp,overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
-            SizedBox(width: 12.w),
+            SizedBox(width: 8.w),
             SizedBox(
               width: 244.w,
               child: Text(
