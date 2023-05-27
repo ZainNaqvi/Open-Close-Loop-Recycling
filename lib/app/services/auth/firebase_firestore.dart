@@ -21,7 +21,6 @@ class FirebaseFirestoreServices {
   }
 
   Future<String> onUserRequest({
-
     required String lan,
     required String lat,
     required String address,
@@ -30,6 +29,7 @@ class FirebaseFirestoreServices {
     required String date,
     required String time,
     required String message,
+    String? imageUrl,
   }) async {
     String res = "Some error Occured";
     try {
@@ -50,6 +50,7 @@ class FirebaseFirestoreServices {
         date: date,
         time: time,
         message: message,
+        imageUrl: imageUrl,
       );
       _firebaseFirestore
           .collection("waste_request")

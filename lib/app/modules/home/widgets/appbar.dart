@@ -15,7 +15,7 @@ AppBar appbar(final controller) {
       StreamBuilder<List<NotificationModel>>(
         stream: controller.getUnreadNotifications().asStream(),
         builder: (context, snapshot) {
-if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             // Show spinner while data is being fetched
             return const Padding(
               padding: EdgeInsets.all(8.0),
@@ -64,18 +64,18 @@ if (snapshot.connectionState == ConnectionState.waiting) {
                 clipBehavior: Clip.none,
                 children: [
                   const Icon(Icons.notifications_active_outlined),
-                  Positioned(
-                    top: -4.h,
-                    right: -3.w,
-                    child: Container(
-                      padding: EdgeInsets.all(2.r),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Badge()
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: -4.h,
+                  //   right: -3.w,
+                  //   child: Container(
+                  //     padding: EdgeInsets.all(2.r),
+                  //     decoration: const BoxDecoration(
+                  //       color: Colors.red,
+                  //       shape: BoxShape.circle,
+                  //     ),
+                  //     child: Badge()
+                  //   ),
+                  // ),
                 ],
               ),
               onPressed: () {

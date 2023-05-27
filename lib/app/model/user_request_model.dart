@@ -13,6 +13,7 @@ class WasteRequest {
   final String? message;
   final String? lat;
   final String? lan;
+  final String? imageUrl;
 
   WasteRequest({
     required this.uid,
@@ -27,6 +28,7 @@ class WasteRequest {
     required this.message,
     required this.lat,
     required this.lan,
+    required this.imageUrl,
   });
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +44,7 @@ class WasteRequest {
         "message": message,
         "lat": lat,
         "lan": lan,
+        "imageUrl": imageUrl,
       };
   static WasteRequest fromSnap(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
@@ -58,6 +61,7 @@ class WasteRequest {
       message: snapshot['message'],
       lat: snapshot['lat'],
       lan: snapshot['lan'],
+      imageUrl: snapshot['imageUrl'],
     );
   }
 }

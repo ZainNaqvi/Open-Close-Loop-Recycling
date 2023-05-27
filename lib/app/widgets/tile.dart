@@ -21,7 +21,8 @@ class Tile extends StatelessWidget {
                 maxLines: 1,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 18.sp,overflow: TextOverflow.ellipsis,
+                  fontSize: 18.sp,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
@@ -30,11 +31,10 @@ class Tile extends StatelessWidget {
               width: 244.w,
               child: Text(
                 value,
-                maxLines: 2,
                 style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16.sp,
-                    overflow: TextOverflow.ellipsis),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16.sp,
+                ),
               ),
             ),
           ],
