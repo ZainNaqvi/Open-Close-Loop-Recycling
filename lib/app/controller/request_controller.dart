@@ -23,15 +23,15 @@ class RequestController extends GetxController {
 
   Future<void> onUserRequest() async {
     final response = await services.onUserRequest(
-      lan: Get.find<HomeController>().currentPosition!.longitude.toString(),
-      lat: Get.find<HomeController>().currentPosition!.latitude.toString(),
-      address: addressController.text,
-      trashType: trashTypeController.text,
-      dumperSize: dumperSizeController.text,
-      date: dateController.text,
-      time: timeController.text,
-      message: messageController.text,
-    );
+        lan: Get.find<HomeController>().currentPosition!.longitude.toString(),
+        lat: Get.find<HomeController>().currentPosition!.latitude.toString(),
+        address: addressController.text,
+        trashType: trashTypeController.text,
+        dumperSize: dumperSizeController.text,
+        date: dateController.text,
+        time: timeController.text,
+        message: messageController.text,
+        imageUrl: 'null');
 
     if (response == 'success') {
       GenericSnackBar(text: "Your Request Submitted Successfully!");

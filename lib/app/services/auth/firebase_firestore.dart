@@ -29,7 +29,7 @@ class FirebaseFirestoreServices {
     required String date,
     required String time,
     required String message,
-    String? imageUrl,
+    required String imageUrl,
   }) async {
     String res = "Some error Occured";
     try {
