@@ -13,6 +13,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: AppColors.PRIMARY_COLOR,
       ),
@@ -97,15 +98,14 @@ class GuideLinesVideos extends StatelessWidget {
               String videoTitle = snapshot.data!.docs[index].get('title');
               String videoUrl = snapshot.data!.docs[index].get('link');
 
-             YoutubePlayerController _controller = YoutubePlayerController(
+              YoutubePlayerController _controller = YoutubePlayerController(
                 initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
                 flags: const YoutubePlayerFlags(
                   autoPlay: false,
                   mute: false,
-                 
                 ),
               );
-      
+
               return Padding(
                 padding: EdgeInsets.only(bottom: 18.h, left: 12.w, right: 12.w),
                 child: Stack(

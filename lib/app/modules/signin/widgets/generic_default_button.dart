@@ -10,6 +10,7 @@ Widget GenericButton({
   Color? color,
   bool border = false,
   bool borderRadius = false,
+  bool isBackground = false,
 }) {
   return GestureDetector(
     onTap: onPressed,
@@ -17,7 +18,7 @@ Widget GenericButton({
       width: Get.width,
       height: 48.h,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isBackground ? AppColors.PRIMARY_COLOR : Colors.white,
         borderRadius: borderRadius
             ? BorderRadius.only(
                 topLeft: Radius.circular(8.r),
@@ -29,7 +30,7 @@ Widget GenericButton({
         child: Text(
           text,
           style: TextStyle(
-            color: AppColors.PRIMARY_COLOR,
+            color: isBackground ? Colors.white : AppColors.PRIMARY_COLOR,
             fontSize: 15.sp,
             fontWeight: FontWeight.w600,
           ),

@@ -1,6 +1,7 @@
 class FilePath {
   // App - Background - PNG
   static String WASTE_IMAGE = "assets/images/waste.png";
+  static String PERSON_IMAGE = "assets/images/person.png";
   // APP - ICONS - images
 
 // Email - Icon

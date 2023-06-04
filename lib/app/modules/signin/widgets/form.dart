@@ -76,18 +76,26 @@ class SigninFormWidget extends StatelessWidget {
                 : GenericButton(
                     onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                  if (controller.userEmailController.text.isEmail) {
+                        final pass = controller.userEmailController.text;
+                        final email = controller.userEmailController.text;
+
+                        if (pass.isEmpty || email.isEmpty) {
+                          GenericSnackBar(text: 'All fields are required');
+                          return;
+                        }
+
+                        if (email.isEmail) {
                           await controller.loginUser();
-                  } else {
-                    GenericSnackBar(text: "Email is not valid");
-                  }
+                        } else {
+                          GenericSnackBar(text: 'Email is not valid');
+                        }
                       } else {
-                        GenericSnackBar(text: "All fields required");
-                }
-              },
-              text: "Sign in",
-              isBackground: true,
-            ),
+                        GenericSnackBar(text: 'All fields are required');
+                      }
+                    },
+                    text: "Sign in",
+                    isBackground: true,
+                  ),
             SizedBox(height: 22.h),
             DontHaveAccount(),
             SizedBox(height: 22.h),

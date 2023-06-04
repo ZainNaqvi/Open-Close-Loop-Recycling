@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserCreditials {
   final String? name;
-  final String ?email;
+  final String? email;
   final String? uid;
   final String? role;
+  final String? imageUrl;
 
   // final List cart;
   // creating the constructor here...
@@ -13,6 +14,7 @@ class UserCreditials {
     required this.email,
     required this.uid,
     required this.role,
+    required this.imageUrl,
   });
   // converting it to the map object
   Map<String, dynamic> toJson() => {
@@ -20,6 +22,7 @@ class UserCreditials {
         'email': email,
         'uid': uid,
         'role': role,
+        'imageUrl': imageUrl,
       };
   static UserCreditials fromSnap(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
@@ -28,6 +31,7 @@ class UserCreditials {
       uid: snapshot['uid'],
       email: snapshot['email'],
       role: snapshot['role'],
+      imageUrl: snapshot['imageUrl'],
     );
   }
 }

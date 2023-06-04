@@ -88,14 +88,34 @@ class SignupForm extends StatelessWidget {
                 : GenericButton(
                     onTap: () async {
                       if (_formKey.currentState!.validate()) {
+                        final name = controller.userNameController.text;
+                        final email = controller.userEmailController.text;
+
+                        // Validate name
+                        final nameRegex = RegExp(r'^[a-zA-Z\s]+$');
+                        if (!nameRegex.hasMatch(name)) {
+                          GenericSnackBar(
+                              text:
+                                  'Invalid name. Name should not contain numbers or special characters');
+                          return;
+                        }
+
+                        // Validate email
+                        final emailRegex = RegExp(
+                            r'^[\w-]+(\.[\w-]+)*@[a-zA-Z\d-]+(\.[a-zA-Z\d-]+)*(\.[a-zA-Z]{2,})$');
+                        if (!emailRegex.hasMatch(email)) {
+                          GenericSnackBar(text: 'Invalid email address');
+                          return;
+                        }
+
                         if (controller.userPasswordController.text ==
                             controller.userConfirmPasswordController.text) {
                           await controller.createUser();
                         } else {
-                          GenericSnackBar(text: "Password does not matched");
+                          GenericSnackBar(text: 'Password does not match');
                         }
                       } else {
-                        GenericSnackBar(text: "All fields required");
+                        GenericSnackBar(text: 'All fields are required');
                       }
                     },
                     text: "Sign up",

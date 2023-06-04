@@ -6,6 +6,8 @@ import 'package:open_close_loop_recycling/app/utils/colors.dart';
 // ignore: must_be_immutable
 class GenericTextField extends StatelessWidget {
   String? hintText;
+  bool? t;
+  bool? enabled;
   TextEditingController? controller;
   String? Function(String?)? validator;
   void Function()? onEditingComplete;
@@ -26,6 +28,7 @@ class GenericTextField extends StatelessWidget {
     required this.prefixIcon,
     this.onChanged,
     this.autofocus = false,
+    this.t = false,
     this.controller,
     this.isSuffixIcon = false,
     this.validator,
@@ -35,6 +38,7 @@ class GenericTextField extends StatelessWidget {
     this.onEditingComplete,
     this.onPressed,
     this.readOnly = false,
+    this.enabled = true,
     this.suffixIcon,
     this.textInputAction = TextInputAction.next,
   }) : super(key: key);
@@ -49,7 +53,7 @@ class GenericTextField extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.GREY_COLOR),
             borderRadius: BorderRadius.circular(30.r),
-            color: AppColors.PRIMARY_BACK_COLOR,
+            color: t! ? Colors.transparent : AppColors.PRIMARY_BACK_COLOR,
           ),
           child: Row(
             children: [
@@ -61,48 +65,53 @@ class GenericTextField extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  child: TextFormField(
-                onChanged: onChanged,
-                textAlign: TextAlign.start,
-                onEditingComplete: onEditingComplete,
-                focusNode: focusNode,
-                autofocus: autofocus,
-                readOnly: readOnly,
-                keyboardType: keyboardType,
-                obscureText: obscureText,
-                textInputAction: textInputAction,
-                controller: controller,
-                validator: validator,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                cursorColor: Colors.white,
-                style: TextStyle(
-                  color: Colors.white,
-                  height: 1.6.r,
+                child: TextFormField(
+                  enabled: enabled,
+                  onChanged: onChanged,
+                  textAlign: TextAlign.start,
+                  onEditingComplete: onEditingComplete,
+                  focusNode: focusNode,
+                  autofocus: autofocus,
+                  readOnly: readOnly,
+                  keyboardType: keyboardType,
+                  obscureText: obscureText,
+                  textInputAction: textInputAction,
+                  controller: controller,
+                  validator: validator,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  cursorColor: t! ? Colors.blue : Colors.white,
+                  style: TextStyle(
+                    color: t! ? Colors.black : Colors.white,
+                    height: 1.6.r,
+                  ),
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.only(bottom: 0.0, top: -1.0.r, left: 8.w),
+                    errorMaxLines: 2,
+                    isDense: true,
+                    errorStyle: const TextStyle(
+                      color: Colors.red,
+                      height: 0,
+                    ),
+                    errorBorder: const OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.transparent, width: 0.0),
+                    ),
+                    focusedErrorBorder: const OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.transparent, width: 0.0),
+                    ),
+                    hintText: hintText,
+                    hintStyle:
+                        TextStyle(color: t! ? Colors.black : Colors.white),
+                    border: enabled! ? outlineBorder() : InputBorder.none,
+                    enabledBorder:
+                        enabled! ? outlineBorder() : InputBorder.none,
+                    focusedBorder:
+                        enabled! ? outlineBorder() : InputBorder.none,
+                  ),
                 ),
-                decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.only(bottom: 0.0, top: 15.0.r, left: 8.w),
-                  errorMaxLines: 2,
-                  isDense: true,
-                  errorStyle: const TextStyle(
-                    color: Colors.red,
-                    height: 0,
-                  ),
-                  errorBorder: const OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.transparent, width: 0.0),
-                  ),
-                  focusedErrorBorder: const OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.transparent, width: 0.0),
-                  ),
-                  hintText: hintText,
-                  hintStyle: const TextStyle(color: Colors.white),
-                  enabledBorder: outlineBorder(),
-                  focusedBorder: outlineBorder(),
-                  border: outlineBorder(),
-                ),
-              )),
+              ),
               isSuffixIcon
                   ? IconButton(
                       onPressed: onPressed,

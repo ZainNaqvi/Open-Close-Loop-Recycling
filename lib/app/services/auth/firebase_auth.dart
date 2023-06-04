@@ -21,10 +21,8 @@ class DbHelper {
         .doc(currentUser.uid)
         .get()
         .catchError(
-      (onError) {
-
-      },
-    );
+          (onError) {},
+        );
 
     return UserCreditials.fromSnap(snapshot);
   }
@@ -33,6 +31,7 @@ class DbHelper {
   // creating - the -  function - to - create - the - user
   Future<String> createUser({
     required String name,
+    required String imageUrl,
     required String email,
     required String password,
     required String role,
@@ -46,11 +45,11 @@ class DbHelper {
       );
       // Getting - Response - Firebase - Auth
       UserCreditials userData = UserCreditials(
-        role: role,
-        email: email,
-        uid: userCredential.user!.uid,
-        name: name,
-      );
+          role: role,
+          email: email,
+          uid: userCredential.user!.uid,
+          name: name,
+          imageUrl: imageUrl);
       // Sending - Email -  Verification
       await sendVerification();
       // Creating - Firebase - Firestore - Collection (' user ') & Setting - Values
@@ -96,8 +95,7 @@ class DbHelper {
     // checking the values are empty or not
     try {
       // now checking and login the user
-    await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
       if (!_auth.currentUser!.emailVerified) {
         await _auth.currentUser!.sendEmailVerification();
         // const url = "https://mail.google.com/";

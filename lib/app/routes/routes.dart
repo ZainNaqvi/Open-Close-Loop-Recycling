@@ -9,6 +9,7 @@ import 'package:open_close_loop_recycling/app/modules/signin/singin.dart';
 import '../modules/fogot/forgot.dart';
 import '../modules/home/home_view.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/profile/profile.dart';
 import '../modules/signup/signup_view.dart';
 import '../modules/splash/splash_view.dart';
 
@@ -25,7 +26,7 @@ class AppRoutes {
   static const ALLREQUEST_ROUTE = '/all-request-route';
   static const GUIDELINES = '/guidelines';
   static const ADMIN_DASHBOARD_ROUTE = '/dashboard';
-
+  static const PROFILE_PAGE = '/profile-page';
 
   // App - Routes - Navigation
   static final ROUTES = [
@@ -65,7 +66,7 @@ class AppRoutes {
       page: () => const SigninView(),
       transition: Transition.leftToRightWithFade,
     ),
-   
+
     // Request - View - Widget
     GetPage(
       name: REQUEST_ROUTE,
@@ -90,6 +91,11 @@ class AppRoutes {
       page: () => const AllRequestsScreen(),
       transition: Transition.leftToRightWithFade,
     ),
-
+    // My - Profile - View - Widget
+    GetPage(
+      name: PROFILE_PAGE,
+      page: () => ProfilePage(),
+      transition: Transition.leftToRightWithFade,
+    ),
   ];
 }

@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (controller) {
-      return controller.currentPosition==null||controller.isloading
+      return controller.currentPosition == null || controller.isloading
           ? const Center(
               child: CircularProgressIndicator(
               color: AppColors.WHITE_COLOR,
@@ -63,14 +63,19 @@ class Body extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
-                          controller.userCreditialsData[0].name==null ?const Center(child: CircularProgressIndicator(strokeWidth: 2),) :   Text(
-                                 controller.userCreditialsData[0].name,
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: AppColors.WHITE_COLOR,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                )
+                                controller.userCreditialsData[0].name == null
+                                    ? const Center(
+                                        child: CircularProgressIndicator(
+                                            strokeWidth: 2),
+                                      )
+                                    : Text(
+                                        controller.userCreditialsData[0].name,
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                          color: AppColors.WHITE_COLOR,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
                               ],
                             )
                           ],
@@ -78,26 +83,26 @@ class Body extends StatelessWidget {
                       ],
                     ),
                   ),
-                  controller.currentPosition == null
-                      ? const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Positioned(
-                          bottom: 18.h,
-                          left: 28.w,
-                          child: Column(
-                            children: [
-                              MapButton(iconData: Icons.add, onPressed: () {}),
-                              SizedBox(height: 12.h),
-                              MapButton(
-                                  iconData: Icons.remove, onPressed: () {}),
-                            ],
-                          ),
-                        ),
+                  // controller.currentPosition == null
+                  //     ? const Center(
+                  //         child: CircularProgressIndicator(strokeWidth: 2),
+                  //       )
+                  //     : Positioned(
+                  //         bottom: 18.h,
+                  //         left: 28.w,
+                  //         child: Column(
+                  //           children: [
+                  //             MapButton(iconData: Icons.add, onPressed: () {}),
+                  //             SizedBox(height: 12.h),
+                  //             MapButton(
+                  //                 iconData: Icons.remove, onPressed: () {}),
+                  //           ],
+                  //         ),
+                  //       ),
 
                   Positioned(
                     bottom: 18.h,
-                    right: 28.w,
+                    left: 28.w,
                     child: Column(
                       children: [
                         MapButton(

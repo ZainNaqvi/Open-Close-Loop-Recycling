@@ -67,6 +67,9 @@ class MyDrawer extends StatelessWidget {
                             case 2:
                               Get.toNamed(AppRoutes.GUIDELINES);
                               break;
+                            case 3:
+                              Get.toNamed(AppRoutes.PROFILE_PAGE);
+                              break;
 
                             default:
                           }
@@ -87,6 +90,7 @@ class MyDrawer extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   DRAWER_ICON_LIST[index]['icon'],
+                                  width: 28,
                                 ),
                                 SizedBox(width: 18.w),
                                 Text(

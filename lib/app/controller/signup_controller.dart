@@ -66,6 +66,7 @@ class SignupController extends GetxController {
     updateIsLoading();
     String response = await _dbHelper.createUser(
       role: 'user',
+      imageUrl: '',
       name: userNameController.text,
       email: userEmailController.text.trim(),
       password: userPasswordController.text.trim(),
